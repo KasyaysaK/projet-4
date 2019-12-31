@@ -1,10 +1,10 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<h1>Mon super blog !</h1>
-<p><a href="index.php">Retour à la liste des billets</a></p>
+<h2>Billet simple pour l'Alaska</h2>
+<p><a href="index.php">Retour à la liste des chapitres</a></p>
 
-<div class="news">
+<div class="chapters">
     <h3>
         <?= htmlspecialchars($post['title']) ?>
         <em>le <?= $post['creation_date_fr'] ?></em>

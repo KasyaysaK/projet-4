@@ -2,7 +2,7 @@
 function getPosts()
 {
     $dbh = dbhConnect();
-    $request = $dbh -> query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+    $request = $dbh -> query('SELECT id, title, content FROM posts ORDER BY creation_date DESC LIMIT 0, 1');
 
     return $request;
 }
