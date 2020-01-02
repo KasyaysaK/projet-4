@@ -1,8 +1,9 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
+ <!-- breadcrumbs -->
 <h2>Billet simple pour l'Alaska</h2>
-<p><a href="index.php">Retour à la liste des chapitres</a></p>
+<p><a href="index.php"></a></p>
 
 <div class="chapters">
     <h3>

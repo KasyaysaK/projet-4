@@ -1,18 +1,19 @@
-<div>
-	<a>Jean Forteroche</a>
-	<a>Me contacter</a>
-	<div class="login-container">
-	    <form action="signin_action.php">
-	    	<input type="text" placeholder="Pseudo" name="username">
-	      	<input type="text" placeholder="Mot de passe" name="password">
-	      	<button class="btn btn-primary" type="submit">Se connecter</button>
-	    </form>
-  	</div>
-</div> 
 
-<div><!-- liste des chapitres sur la gauche, zoom on hover --></div>
-<div> <!-- au milieu, animation css sur le texte https://codepen.io/FrankieDoodie/pen/dgVGad--> 
-	<h1>Jean Forteroche</h1>
+<div class="row d-flex justify-content-around">
+	<div class="col-sm-2 d-flex align-items-end justify-content-center chapters">
+		<ul>
+			<li><a class="zoom">Chapitre 1</a></li>
+			<li><a class="zoom">Chapitre 2</a></li>
+			<li><a class="zoom">Chapitre 3</a></li>
+		</ul>
+	</div> 
+	
+	<div class="col-sm-6 d-flex align-items-center justify-content-center 	logo"> 
+		<h1 class="name">Jean Forteroche</h1>
+	</div>
+	<div class="col-sm-2 d-flex align-items-end">
+		<a>Qui suis-je ?</a>
+	</div>
+	
 </div>
-<div><!-- biographie sur la droite  --></div>
-
+	

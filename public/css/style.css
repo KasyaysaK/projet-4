@@ -1,1 +1,47 @@
-style.css
+body {
+  background-color: #000;
+  color: white;
+}
+.logo {
+  height: 400px;
+}
+.name {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 2.8em;
+  letter-spacing: 4px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #000, #fff, #000);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 5s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+
+@keyframes animate {
+  0% {
+    background-position: -500%;
+  }
+  50% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
+.chapters ul {
+  list-style: none;
+}
+.chapters a{
+    display: block;
+    cursor: url(../images/open-book.png), auto;
+}
+.zoom {
+  -webkit-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.zoom:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
