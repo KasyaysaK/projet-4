@@ -34,7 +34,7 @@ body {
 .book-banner {
   background: url(../images/a-night-in-alaska.jpg) no-repeat;
   height: 600px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 } 
 .book-title {
     font-family: 'Stardos Stencil', cursive;
@@ -54,6 +54,14 @@ body {
           transition: all .2s ease-in-out;
 }
 .zoom:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
+
+.content {
+  margin: 25px 0; 
+  background-color: #343a40;
+}
+.flag {
+  float: right;
 }

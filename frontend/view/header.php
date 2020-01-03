@@ -1,6 +1,6 @@
 <div class="container">
 	<div class=" d-flex align-items-center justify-content-center logo">
-		<h1 class="name">Jean Forteroche</h1>
+		<a class="nav-link" href="index.php"><h1 class="name">Jean Forteroche</h1></a>
 	</div>
 </div>
 
