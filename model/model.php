@@ -10,7 +10,7 @@ function getPosts()
 function getPost($postId) 
 {
     $dbh = dbhConnect();
-    $request = $dbh->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%i\') AS creation_date_fr FROM posts WHERE id = ?');
+    $request = $dbh->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts WHERE id = ?');
     $request -> execute(array($postId));
     $post = $request -> fetch();
 
@@ -24,6 +24,15 @@ function getComments($postId)
     $comments -> execute(array($postId));
 
     return $comments;
+}
+
+function postComment($postId, $author, $comment)
+{
+    $dbh = dbhConnect();
+    $comments = $dbh->prepare('INSERT INTO comments (post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
+    $affectedLines = $comments->execute(array($postId, $author, $comment));
+
+    return $affectedLines;
 }
 
 function dbhConnect() //allows connection to database

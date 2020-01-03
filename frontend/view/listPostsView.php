@@ -6,7 +6,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
-    			<h2 class="">Billet simple pour l'Alaska</h2>
+    			<h2 class=""></h2>
     			<p>Dernier chapitre publié :</p>
 
     
