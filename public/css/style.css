@@ -47,7 +47,9 @@ body {
 }
 .chapters a{
     display: block;
-    cursor: url(../images/open-book.png), auto;
+}
+.book-cursor {
+  cursor: url(../images/open-book.png), auto;
 }
 .zoom {
   -webkit-transition: all .2s ease-in-out;
