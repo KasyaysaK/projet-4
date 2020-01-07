@@ -5,7 +5,7 @@ require_once('model/CommentManager.php');
 
 function listPosts()
 {
-    $postManager = new PostManager();
+    $postManager = new JeanForteroche\Blog\Model\PostManager();
     $posts = $postManager->getPosts();
 
     require('view/frontend/listPostsView.php');
@@ -13,17 +13,17 @@ function listPosts()
 
 function post()
 {
-    $postManager = new PostManager();
-    $commentManager = new CommentManager();
+    $postManager = new JeanForteroche\Blog\Model\PostManager();
+    $commentManager = new JeanForteroche\Blog\Model\CommentManager();
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
 
-    require('frontend/view/frontend/postView.php');
+    require('view/frontend/postView.php');
 }
 
 function addComment($postId, $author, $comment)
 {
-    $commentManager = new CommentManager();
+    $commentManager = new JeanForteroche\Blog\Model\CommentManager();
 
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
@@ -32,5 +32,18 @@ function addComment($postId, $author, $comment)
     }
     else {
         header('Location: index.php?action=post&id=' . $postId);
+    }
+}
+
+function flagComment($commentId)
+{
+    $commentManager = new CommentManager();
+    $flaggedComment = $commentManager->flagComment($commentId);
+
+    if ($flaggedComment === false) {
+        throw new Exception('Commentaire non signalé');   
+    }
+    else {
+        header('Location: index.php?action=comment&id=' . $commentId);
     }
 }
