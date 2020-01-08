@@ -1,5 +1,6 @@
 <?php
-require('controller/controller.php');
+require('controller/frontend.php');
+require('controller/backend.php');
 
 try {
     if (isset($_GET['action'])) {
@@ -27,6 +28,13 @@ try {
                 throw new Exception('La page demandée n\'existe pas.');
             }
         }
+         elseif ($_GET['action'] == 'showDashboard') {
+            adminLogin();
+            }
+            else {
+                throw new Exception('Vous n\'êtes pas autorisé à accéder à cette page');
+            }
+
     }
     else {
         listPosts();
@@ -36,3 +44,5 @@ try {
 catch(Exception $e) {
     $errorMessage = $e->getMessage();
 }
+
+
