@@ -1,10 +1,4 @@
 <?php 
-<<<<<<< HEAD
-
-namespace JeanForteroche\Blog\Model;
-
-=======
->>>>>>> d2e9f24ba109198509739e6a46fe9190d0ce42ad
 require_once('model/Manager.php');
 
 	class CommentManager extends Manager

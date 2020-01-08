@@ -11,7 +11,7 @@ try {
                 post();
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('La page demandée n\'existe pas.');
             }
         }
         elseif ($_GET['action'] == 'addComment') {
@@ -20,16 +20,13 @@ try {
                     addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                 }
                 else {
-                    throw new Exception('Aucun identifiant de billet envoyé');
+                    throw new Exception('Tous les champs ne sont pas remplis');
                 }
             }
             else {
                 throw new Exception('La page demandée n\'existe pas.');
             }
         }
-    //    elseif ($_GET['action'] == 'dashboardLogin') {
-//            if(isset($_POST['formconnexion'])) 
-//        }
     }
     else {
         listPosts();
@@ -37,8 +34,5 @@ try {
 }
 
 catch(Exception $e) {
-    echo 'Erreur :' . $e->getMessage();
+    $errorMessage = $e->getMessage();
 }
-
-
-

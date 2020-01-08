@@ -1,85 +1,69 @@
-/*FRONTEND*/
-  body {
-    background-color: #14121F;
-    color: white;
-  }
+body {
+  background-color: #14121F;
+  color: white;
+}
 
-  .logo {
-    height: 100px;
+.logo {
+  height: 100px;
+}
+.name {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 2.8em;
+  letter-spacing: 4px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #14121F, #fff, #14121F);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 5s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+@keyframes animate {
+  0% {
+    background-position: -500%;
   }
-  .name {
-    position: relative;
-    text-transform: uppercase;
-    font-size: 2.8em;
-    letter-spacing: 4px;
-    overflow: hidden;
-    background: linear-gradient(90deg, #14121F, #fff, #14121F);
-    background-repeat: no-repeat;
-    background-size: 80%;
-    animation: animate 5s linear infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  50% {
+    background-position: 0%;
   }
-  @keyframes animate {
-    0% {
-      background-position: -500%;
-    }
-    50% {
-      background-position: 0%;
-    }
-    100% {
-      background-position: 500%;
-    }
+  100% {
+    background-position: 500%;
   }
+}
 
-  .book-banner {
-    background: url(../images/a-night-in-alaska.jpg) no-repeat;
-    height: 600px;
-    margin-bottom: 100px;
-  } 
-  .book-title {
-      font-family: 'Stardos Stencil', cursive;
-      font-weight: bold;
-      font-size: 4em;
-      text-shadow: #000 2px 4px 8px;
-  }
-  .chapters ul {
-    list-style: none;
-  }
-  .chapters a{
-      display: block;
-  }
-  .book-cursor {
-    cursor: url(../images/open-book.png), auto;
-  }
-  .zoom {
-    -webkit-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out;
-  }
-  .zoom:hover {
-    -webkit-transform: scale(1.4);
-            transform: scale(1.4);
-  }
+.book-banner {
+  background: url(../images/a-night-in-alaska.jpg) no-repeat;
+  height: 600px;
+  margin-bottom: 100px;
+} 
+.book-title {
+    font-family: 'Stardos Stencil', cursive;
+    font-weight: bold;
+    font-size: 4em;
+    text-shadow: #000 2px 4px 8px;
+}
+.chapters ul {
+  list-style: none;
+}
+.chapters a{
+    display: block;
+}
+.book-cursor {
+  cursor: url(../images/open-book.png), auto;
+}
+.zoom {
+  -webkit-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.zoom:hover {
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
 
-  .content {
-    margin: 25px 0; 
-    background-color: #343a40;
-  }
-  .flag {
-    float: right;
-  }
-  .close-btn, .close-btn:hover {
-    color: white;
-  }
-  .modal-header {
-   border-bottom: 1px solid rgba(0,0,0,.125);
-  }
-  .modal-footer {
-   border-top: 1px solid rgba(0,0,0,.125);
-  }
-
-/*BACKEND*/
-  /*dashboard wrapper*/
-    .aside {
-      background-color: #343A40;
-    }
+.content {
+  margin: 25px 0; 
+  background-color: #343a40;
+}
+.flag {
+  float: right;
+}

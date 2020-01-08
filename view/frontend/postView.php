@@ -10,7 +10,7 @@
 				<p><a class="nav-link" href="index.php">Retourner à la page d'accueil</a></p>
 
 				<div class="card content">
-					<div class="card-header d-flex justify-content-between">
+					<div class="card-header">
 						 <h3 class="card-title"><?= htmlspecialchars($post['title']) ?></h3>
 				         <p class="card-subtitle">le <?= $post['creation_date_fr'] ?></p>    	
 					</div>
@@ -56,52 +56,13 @@
 		  	  			<p class="card-text"><?= htmlspecialchars($comment['comment']) ?></p>
 					</div>
 				   	<div class="card-footer">
-				   		<button type="button" class="btn btn-dark flag" data-toggle="modal" data-target="#flag-comment"><i class="fas fa-exclamation-triangle warning"></i></button>
-				   		<!-- Modal -->
-						<div id="flag-comment" class="modal fade" role="dialog">
-						  <div class="modal-dialog">
-						    <!-- Modal content-->
-						    <div class="modal-content content">
-						      <div class="modal-header">
-						      	<h4 class="modal-title">Signaler le commentaire</h4>
-						        <button type="button" class="close close-btn" data-dismiss="modal">&times;</button>
-						      </div>
-						      <div class="modal-body">
-						      	<div class="form-check">
-									<input class="form-check-input" type="radio" name="unwanted-content" value="option1">
-									<label class="form-check-label" for="radio1">
-									    Contenu indésirable
-									</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio" name="threatening-content" value="option2">
-									<label class="form-check-label" for="radio2">
-									    Contenu intimidant ou menacant, harcèlement
-									  </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio" name="radio"  value="option3">
-									<label class="form-check-label" for="radio3">
-									   Contenu violent, à caractère pornographique ou sexuellement explicite
-									  </label>
-								</div>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-success" data-dismiss="modal">Signaler</button>
-						        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-						      </div>
-						    </div>
-
-						  </div>
-						</div>
+				   		<button type="button" class="btn btn-dark flag" data-toogle="tootlip" data-placement="right"title="Signaler le commentaire">Signaler</button>
 				   	</div>
 				</div>
 
 				<?php
 				}
-				$comments->closeCursor();
 				?>
-
 			</div>
 		</div>
 	</div>
