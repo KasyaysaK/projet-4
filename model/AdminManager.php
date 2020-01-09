@@ -4,11 +4,11 @@ require_once('model/Manager.php');
 
 class AdminManager extends Manager
 {
-	public function adminSignin()
+	public function adminSignin($email, $password)
 	{
 		$dbh = $this->dbhConnect();
-		$request = $dbh->prepare('SELECT * FROM admin WHERE username = :username AND password = :password');
-		$request->execute(array(':username'=>$_POST['username'], 'passwor'=>$_POST['password']));
+		$request = $dbh->prepare('SELECT * FROM admin WHERE email = :email');
+		$request->execute(array('email'=> $email));
 		$admin = $request->fetch();
 
 		return $admin;

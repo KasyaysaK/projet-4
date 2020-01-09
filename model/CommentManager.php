@@ -3,6 +3,14 @@ require_once('model/Manager.php');
 
 	class CommentManager extends Manager
 	{
+		public function getAllComments()
+		{
+			$dbh = $this->dbhConnect();
+			$request = $dbh->query('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments ORDER BY comment_date ASC LIMIT 0, 5');
+
+			return $request;
+		}
+
 		public function getComments($postId) 
 		{
 		    $dbh = $this->dbhConnect();

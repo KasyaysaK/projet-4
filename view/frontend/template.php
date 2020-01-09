@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Stardos+Stencil&display=swap" rel="stylesheet">
         <link href="public/css/style.css" rel="stylesheet" /> 
     </head>
-    <body>
+    <body class="frontend-body">
         <?= $content ?>
 
         <?php include('footer.php'); ?>

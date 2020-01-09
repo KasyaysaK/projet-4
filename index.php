@@ -2,6 +2,9 @@
 require('controller/frontend.php');
 require('controller/backend.php');
 
+            var_dump('bonjour');
+
+
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
@@ -29,7 +32,9 @@ try {
             }
         }
          elseif ($_GET['action'] == 'showDashboard') {
-            adminLogin();
+            var_dump($_POST['email'], $_POST['password']);
+
+            showDashboard($_POST['email'], $_POST['password']);
             }
             else {
                 throw new Exception('Vous n\'êtes pas autorisé à accéder à cette page');

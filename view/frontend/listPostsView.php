@@ -10,7 +10,7 @@
     			<p>Dernier chapitre publié :</p>
    
 				    <?php
-				    	while ($data = $posts -> fetch())
+				    	while ($data = $posts->fetch())
 				    	{
 				    ?>
 					        <div class="">
