@@ -17,14 +17,13 @@
 	    </tr> 		
 	  </thead>
 	  <tbody>
-	  		<?php var_dump($posts) ?>
-	  	
+
 	  	<?php foreach ($posts as $post): ?>
 		    <tr>
 		      <th scope="row"><?= $post['id'] ?></th>
 		      <td><?= htmlspecialchars($post['title']); ?></td>
 		      <td><?= $post['creation_date_fr'] ?></td>
-		      <td><i class="fas fa-edit"></i> <i class="far fa-trash-alt"></td>
+		      <td><a href=""><i class="fas fa-edit"></a></i> <a href=""><i class="far fa-trash-alt"></a></td>
 		    </tr>
 		<?php endforeach;?>
 	  </tbody>
@@ -56,7 +55,7 @@
 		      <td><?= htmlspecialchars($comment['author']) ?></td>
 		      <td><?= htmlspecialchars($comment['comment']) ?></td>
 		      <td><?= $comment['comment_date_fr'] ?></td>
-		      <td><i class="fas fa-edit"></i> <i class="far fa-trash-alt"></td>
+		      <td><a href=""><i class="fas fa-edit"></a></i> <a href=""><i class="far fa-trash-alt"></a></td>
 		    </tr>
 		<?php endforeach;?>
 	  </tbody>

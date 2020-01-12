@@ -21,5 +21,39 @@ require_once('model/Manager.php');
 
 		    return $post;
 		}
+
+		public function addPost() 
+		{
+			$dbh = $this->dbhConnect();
+			$request = $dbh->prepare('INSERT INTO posts (title, content) VALUES (?, ?)');
+			$newPost = $request;
+
+			return $newPost;
+		}
+
+		public function publishPost($title, $content) 
+		{
+			$dbh = $this->dbhConnect();
+			$request = $dbh->prepare('INSERT INTO posts (title, content) VALUES (?, ?)');
+
+			$publishedPost = $request;
+
+			return $publishedPost;
+		}
+
+		public function editPost($id, $title, $content)
+		{
+			$dbh = $this->dbhConnect();
+			$request = $dbh->prepare('UPDATE posts set title = :title, content = :content WHERE id = :id');
+		}
+
+		public function deletePost($postId, $commentId)
+		{
+			$dbh = $this->dbhConnect();
+			$request = $dbh->preprare('DELETE posts, comments FROM posts, comments WHERE posts.id = ? AND comments.post_id = ?');
+			$deletedPost = $request->execute(array($postId, $commentId));
+
+			return $deletedPost;
+		}
 	}
 	/*Ajouter public function admin pour pouvoir éditer le post*/

@@ -64,13 +64,13 @@
   .flag {
     float: right;
   }
-  .close-btn, .close-btn:hover {
+  .close-btn-frontend, .close-btn-frontend:hover {
     color: white;
   }
-  .modal-header {
+  .modal-header-frontend {
    border-bottom: 1px solid rgba(0,0,0,.125);
   }
-  .modal-footer {
+  .modal-footer-frontend {
    border-top: 1px solid rgba(0,0,0,.125);
   }
 

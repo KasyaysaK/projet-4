@@ -10,9 +10,9 @@
 	</div>
 	<div class="col-sm-2 d-flex align-items-end justify-content-center chapters">
 		<ul>
-			<li><a class="zoom">Chapitre 1</a></li>
-			<li><a class="zoom">Chapitre 2</a></li>
-			<li><a class="zoom">Chapitre 3</a></li>
+			<?php foreach ($posts as $post): ?>
+			<li><a class="zoom" href="index.php?action=post&amp;id=<?= $post['id'] ?>"><?= htmlspecialchars($post['title']); ?></a></li>
+			<?php endforeach;?>
 		</ul>
 	</div> 
 </div>

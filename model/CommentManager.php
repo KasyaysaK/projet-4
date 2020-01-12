@@ -6,7 +6,7 @@ require_once('model/Manager.php');
 		public function getAllComments()
 		{
 			$dbh = $this->dbhConnect();
-			$request = $dbh->query('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments ORDER BY comment_date ASC LIMIT 0, 5');
+			$request = $dbh->query('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments ORDER BY comment_date DESC');
 
 			return $request;
 		}
@@ -18,15 +18,18 @@ require_once('model/Manager.php');
 		    $comments -> execute(array($postId));
 
 		    return $comments;
+
 		}
 
 		public function postComment($postId, $author, $comment)
 		{
 		    $dbh = $this->dbhConnect();
-		    $comments = $dbh->prepare('INSERT INTO comments (post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
+		    $comments = $dbh->prepare('INSERT INTO comments (post_id, author, comment, comment_date, flagged) VALUES(?, ?, ?, NOW(), 0)');
 		    $affectedLines = $comments->execute(array($postId, $author, $comment));
 
 		    return $affectedLines;
 		}
+
+		//public function flaggedComment()
 	} 
 	

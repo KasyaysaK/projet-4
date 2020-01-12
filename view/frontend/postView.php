@@ -31,12 +31,10 @@
 				<h4>Commentaires</h4>
 				<form id="add-comment" action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
 	       			 <div class="form-group">
-				        <label for="author">Nom</label><br />
-				        <input id="author" class="form-control form" aria-describedby="auteur" placeholder="Entrez votre nom" />
+				        <input id="author" class="form-control form" aria-describedby="auteur" name="comment" placeholder="Entrez votre nom" />
 				    </div>
 				    <div class="form-group">
-				        <label for="comment">Commentaire</label><br />
-				        <textarea id="comment" class="form-control form" aria-describedby="commentaire" placeholder="Entrez vore commentaire"></textarea>
+				        <textarea id="comment" class="form-control form" aria-describedby="commentaire" name="comment" placeholder="Entrez vore commentaire"></textarea>
 				    </div>
 				    <div>
 				         <button type="submit" class="btn btn-dark">Envoyer</button>
@@ -59,40 +57,35 @@
 				   		<button type="button" class="btn btn-dark flag" data-toggle="modal" data-target="#flag-comment"><i class="fas fa-exclamation-triangle warning"></i></button>
 				   		<!-- Modal -->
 						<div id="flag-comment" class="modal fade" role="dialog">
-						  <div class="modal-dialog">
-						    <!-- Modal content-->
-						    <div class="modal-content content">
-						      <div class="modal-header">
-						      	<h4 class="modal-title">Signaler le commentaire</h4>
-						        <button type="button" class="close close-btn" data-dismiss="modal">&times;</button>
-						      </div>
-						      <div class="modal-body">
-						      	<div class="form-check">
-									<input class="form-check-input" type="radio" name="unwanted-content" value="option1">
-									<label class="form-check-label" for="radio1">
-									    Contenu indésirable
-									</label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio" name="threatening-content" value="option2">
-									<label class="form-check-label" for="radio2">
-									    Contenu intimidant ou menacant, harcèlement
-									  </label>
-								</div>
-								<div class="form-check">
-									<input class="form-check-input" type="radio" name="radio"  value="option3">
-									<label class="form-check-label" for="radio3">
-									   Contenu violent, à caractère pornographique ou sexuellement explicite
-									  </label>
-								</div>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-success" data-dismiss="modal">Signaler</button>
-						        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-						      </div>
+						  	<div class="modal-dialog">
+							    <!-- Modal content-->
+							    <div class="modal-content content">
+							      	<div class="modal-header modal-header-frontend">
+								      	<h4 class="modal-title">Signaler le commentaire</h4>
+								        <button type="button" class="close close-btn-frontend" data-dismiss="modal">&times;</button>
+								    </div>
+								    <form action="index.php?action=flagComment&amp;id=<?= $post['id'] ?>" method="POST">
+									    <div class="modal-body">
+									      	<div class="form-check">
+												<input class="form-check-input" type="radio" name="flag" value="option1">
+												<label class="form-check-label" for="radio1">Contenu indésirable</label>
+												</div>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="flag" value="option2">
+												<label class="form-check-label" for="radio2">Contenu intimidant ou menacant, harcèlement</label>
+											</div>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="flag"  value="option3">
+												<label class="form-check-label" for="radio3">Contenu violent, à caractère pornographique ou sexuellement explicite</label>
+											</div>
+									    </div>
+										    <div class="modal-footer modal-footer-frontend">
+										        <button type="button" class="btn btn-success" data-dismiss="modal">Signaler</button>
+										        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+										    </div>
+							      	</form>      	
+							    </div>
 						    </div>
-
-						  </div>
 						</div>
 				   	</div>
 				</div>

@@ -1,13 +1,16 @@
 <?php
+require('controller/frontend.php');
 require('controller/backend.php');
+	
+	try {
+		switch ($_GET['action'])
+		{
+			case 'listPost': 
+				listPost();
+				break;
+		}
+	}
 
-try {
-        listContent();
-
-}
-
-catch(Exception $e) {
+	catch(Exception $e) {
     $errorMessage = $e->getMessage();
-}
-
-
+	}
