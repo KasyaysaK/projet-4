@@ -1,9 +1,12 @@
 /*FRONTEND*/
   .frontend-body {
     background-color: #14121F;
+    
     color: white;
   }
-
+  .title {
+    background: url(../images/a-night-in-alaska-xs.jpg) no-repeat;
+  }
   .name {
     position: relative;
     text-transform: uppercase;
@@ -28,25 +31,16 @@
       background-position: 500%;
     }
   }
-
-  .book-banner {
-    background: url(../images/a-night-in-alaska.jpg) no-repeat;
+ .book-banner {
+    background: url(../images/a-night-in-alaska-sm.jpg) no-repeat;
     height: 600px;
+    margin-bottom: 100px;
   } 
   .book-title {
       font-family: 'Stardos Stencil', cursive;
       font-weight: bold;
       font-size: 4em;
       text-shadow: #000 2px 4px 8px;
-  }
-  .chapters ul {
-    list-style: none;
-  }
-  .chapters a{
-      display: block;
-  }
-  .book-cursor {
-    cursor: url(../images/open-book.png), auto;
   }
   .zoom {
     -webkit-transition: all .2s ease-in-out;

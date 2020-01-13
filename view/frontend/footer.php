@@ -1,7 +1,12 @@
-<div class="container">
-	<div class="row d-flex justify-content-between">
-		<div>A propos</div>
+<footer class="container-fluid bg-dark">
+	<div class="row d-flex justify-content-around">
+		<div>À propos</div>
+		<div>Synopsis</div>
 		<div>Chapitres</div>
+		<div>
+			<a class="nav-link" href="index.php"><h1 class="name">Jean Forteroche</h1></a>
+		</div>
+		<img src="" alt="" />
 		<div>
 			<button class="btn btn-dark" data-toggle="modal" data-target="#login-form"><i class="fab fa-keycdn"></i></button>
 			<!-- Modal -->
@@ -27,4 +32,4 @@
 		    	</div>
 			</div>
 		</div>
-	</div>
+	</footer>

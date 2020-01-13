@@ -1,7 +1,17 @@
 <?php
 
+require_once('model/HomepageManager.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+
+function homepage()
+{
+    $homepageManager = new HomepageManager();
+    $homepage = $homepageManager->showHome();
+
+    require('view/frontend/homepageView.php');
+}
+
 
 function listPosts()
 {

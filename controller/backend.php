@@ -1,6 +1,7 @@
 <?php
 
 require_once('model/AdminManager.php');
+require_once('model/HomepageManager.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
@@ -12,6 +13,7 @@ function showDashboard($email, $password)
     
 
     if ($adminLogsIn) {
+        var_dump('autorisé');
 		$hash = password_hash($password, PASSWORD_DEFAULT);
 
         if(filter_var($email, FILTER_VALIDATE_EMAIL) && password_verify('admin', $hash)) {
@@ -19,6 +21,8 @@ function showDashboard($email, $password)
             require('view/backend/dashboardView.php');
         }
         else {
+        var_dump(' non autorisé');
+
             throw new Exception('Vous n\'êtes pas autorisé à consulter cette page');
         }
     }

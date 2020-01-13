@@ -6,56 +6,66 @@ try {
 
     if (isset($_GET['action'])) {
 
-        if ($_GET['action'] == 'listPosts') {
-            listPosts();
-        }
+        switch ($_GET['action']) {
+            //FRONTEND
+            case 'homepage':
+                homepage();
+                break;
 
-        elseif ($_GET['action'] == 'post') {
+            case 'listPosts':
+                listPosts();
+                break;
 
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
-            }
-            else {
-                throw new Exception('La page demandée n\'existe pas.');
-            }
-
-        }
-
-        elseif ($_GET['action'] == 'addComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_POST['author']) && !empty($_POST['comment'])) {
-                    addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+            case 'post' :
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    post();
                 }
                 else {
-                    throw new Exception('Tous les champs ne sont pas remplis');
+                    throw new Exception('L\'identifiant de billet n\'existe pas.');
                 }
-            }
-            else {
-                throw new Exception('La page demandée n\'existe pas.');
-            }
-        }
+                break;
 
-        elseif ($_GET['action'] == 'showDashboard') {
-            showDashboard($_POST['email'], $_POST['password']);   
-        }
-        elseif ($_GET['action'] == 'createPost') {
+            case 'addComment' : 
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    if (!empty($_POST['author']) && !empty($_POST['comment'])) {
+                        addComment($_GET['id'], $_POST['author'], $_POST['comment']);
+                    }
+                    else {
+                        throw new Exception('Tous les champs ne sont pas remplis');
+                    }
+                }
+                else {
+                    throw new Exception('L\'identifiant de billet n\'existe pas.');
+                }
+                break;
+
+            //BACKEND
+            case 'showDashboard' :
+                if ($_GET['action'] == 'showDashboard') {
+                    showDashboard($_POST['email'], $_POST['password']);   
+                }
+                else {
+                    throw new Exception('Vous n\'êtes pas autorisé à accéder à cette page');
+                }
+                break;
+
+            case 'createPost' :
                 createPost();
-                var_dump('coucou depuis le routeur');
-            }
-        elseif ($_GET['action'] == 'publishPost') {
-            showDashboard($_POST['email'], $_POST['password']);   
-        }
-        elseif ($_GET['action'] == 'deletePost') {
-            showDashboard($_POST['email'], $_POST['password']);   
-        }   
-            else {
-                throw new Exception('Vous n\'êtes pas autorisé à accéder à cette page');
-            }
+                break;
+            case 'publishPost' :
+                showDashboard($_POST['email'], $_POST['password']);   
+                break;
 
+            case 'deletePost' :
+                showDashboard($_POST['email'], $_POST['password']);   
+                break;
+            
+        }
     }
     else {
-        listPosts();
+        homepage();
     }
+
 }
 
 catch(Exception $e) {
