@@ -47,28 +47,26 @@ try {
                     }
                     break;
 
+                case 'flagComment' :
+                    if (isset ($_GET['postId']) && isset ($_GET['commentId'])) {
+                        flagComment($_GET['commentId'], $_GET['postId']);
+                    }
+                    break;
+
             //BACKEND
             case 'showDashboard' :
                 session_start();
                 
-                if ($_GET['action'] == 'showDashboard') {
+                if (!isset($_SESSION)) {
                     showDashboard($_POST['email'], $_POST['password']);   
+                }
+                elseif (isset($_SESSION['email']) && (isset($_SESSION['password']))) {
+                    showDashboard($_SESSION['email'], $_SESSION['password']);    
                 }
                 else {
                     throw new Exception('Vous n\'êtes pas autorisé à accéder à cette page');
                     header('Location: index.php');
                 }
-                break;
-
-            case 'showGestionnaire' : 
-                session_start();
-                if (isset($_SESSION['email']) && (isset($_SESSION['password']))) {
-                    //vérifier email et mot de passe avec fonction
-
-                    listContent(); 
-                }
-                var_dump($_SESSION['email']);
-                var_dump('bonjour');
                 break;
 
             case 'addPost' :
@@ -97,7 +95,9 @@ try {
                   throw new Exception('L\'article n\'a pas été supprimé');
                 }
                 break;
-            
+
+            case 'adminLogsOut' :
+                adminLogsOut();
         }
     }
     else {

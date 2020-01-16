@@ -54,28 +54,7 @@
 		  	  			<p class="card-text"><?= htmlspecialchars($comment['comment']) ?></p>
 					</div>
 				   	<div class="card-footer">
-				   		<button type="button" class="btn btn-dark flag" data-toggle="modal" data-target="#flag-comment"><i class="fas fa-exclamation-triangle warning"></i></button>
-				   		<!-- Modal -->
-						<div id="flag-comment" class="modal fade" role="dialog">
-						  	<div class="modal-dialog">
-							    <!-- Modal content-->
-							    <div class="modal-content content">
-							      	<div class="modal-header modal-header-frontend">
-								      	<h4 class="modal-title">Signaler le commentaire</h4>
-								        <button type="button" class="close close-btn-frontend" data-dismiss="modal">&times;</button>
-								    </div>
-								    <form action="index.php?action=flagComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $_GET['id'] ?>" method="GET">
-									    <div class="modal-body">
-									      	<p>Êtes-vous sûr de vouloir signaler ce commentaire ?</p>
-									    </div>
-										    <div class="modal-footer modal-footer-frontend">
-										        <button type="button" class="btn btn-success" data-dismiss="modal">Signaler</button>
-										        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-										    </div>
-							      	</form>      	
-							    </div>
-						    </div>
-						</div>
+				   		<a href="index.php?action=flagComment&amp;postId=<?= $post['id'] ?>&amp;commentId=<?= $comment['id'] ?>" class="btn btn-dark flag"><i class="fas fa-exclamation-triangle warning"></i></a>
 				   	</div>
 				</div>
 

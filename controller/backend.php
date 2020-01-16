@@ -5,45 +5,51 @@ require_once('model/HomepageManager.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
-function adminLogsIn() 
-{
-    if (isset($_SESSION['email']) && ($_SESSION['password'])) { 
-        require('view/backend/dashboardView.php');
-    } 
-    else {
-        require('view/backend/authorisationView.php');
-    }
-}
+//function adminLogsIn() 
+//{
+//    if (isset($_SESSION['email']) && ($_SESSION['password'])) { 
+//        require('view/backend/dashboardView.php');
+//    } 
+//    else {
+//        require('view/frontend/authorisationView.php');
+//    }
+//}
 
 function showDashboard($email, $password)
 {
-    if (isset($_SESSION['email']) && ($_SESSION['password'])) { 
-        var_dump($_SESSION);
-        
-        listContent();
-    } 
-    else {
+//    if (isset($_SESSION['email']) && ($_SESSION['password'])) { 
+//        
+//        listContent();
+//    } 
+//    else {
+        var_dump('yo');
         session_start();
-
         $adminManager = new AdminManager();
         $adminLogsIn = $adminManager->adminSignin($email, $password);
-
         if ($adminLogsIn) {
+                var_dump('logged in');
+
              $_SESSION['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $_SESSION['password'] = password_verify('admin', $hash);
-
                 listContent();
             }
             else {
-                header('Location: index.php');
-                exit();
+                var_dump('not logged in');
+                require('view/frontend/login.php');
             }
-        }
+        
     }
 
 
-//function adminLogsOut() {}
+
+function adminLogsOut() {
+    var_dump($_SESSION);
+    session_destroy();
+
+    header('Location: index.php');
+    exit;
+}
 
 function listContent()
 {

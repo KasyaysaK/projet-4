@@ -45,17 +45,18 @@ function addComment($postId, $author, $comment)
     }
 }
 
-function flagComment($commentId)
+function flagComment($commentId, $postId)
 {
+    var_dump('bonjour');
     $commentManager = new CommentManager();
-    $flaggedComment = $commentManager->flagComment($commentId);
+    $flaggedComment = $commentManager->flaggedComment($commentId);
 
-    if ($flaggedComment === false) {
+    if ($flaggedComment === 0) {
         throw new Exception('Commentaire non signalé');
         echo 'Le commentaire n\'a pas pu être signalé.';   
     }
     else {
         echo 'commentaire signalé';
-        header('Location: index.php?action=comment&id=' . $commentId);
+        header('Location: index.php?action=post&id=' . $postId);
     }
 }

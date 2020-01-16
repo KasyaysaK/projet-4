@@ -30,9 +30,9 @@ require_once('model/Manager.php');
 
 		public function flaggedComment($commentId) {
 			$dbh = $this->dbhConnect();
-			$flaggedComment = $dbh->prepare('UPDATE comments SET flagged = ? WHERE post_id = ?');
+			$flaggedComment = $dbh->prepare('UPDATE comments SET flagged = 1 WHERE post_id = :id');
 
-			$flaggedComment->execute(array(TRUE, $commentId));
+			$flaggedComment->execute(array(1, $commentId));
 		}
 	} 
 	

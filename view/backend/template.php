@@ -18,6 +18,14 @@
 		
         <?php include('header.php'); ?>
 
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="msg">
+                <?php 
+                    echo $_SESSION['message']; 
+                    unset($_SESSION['message']);
+                ?>
+            </div>
+
         <?= $content ?>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -10,8 +10,8 @@
     <button class="btn btn-dark dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Jean Forteroche <i class="fas fa-home"></i></button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <a class="dropdown-item" href="index.php"> Voir le site</a>
-      <a class="dropdown-item" href="index.php?action=showGestionnaire"> Voir le gestionnaire </a>
-      <a class="dropdown-item" href="">Se déconnecter</a>
+      <a class="dropdown-item" href="index.php?action=showDashboard"> Voir le gestionnaire </a>
+      <a class="dropdown-item" href="index.php?action=adminLogsOut">Se déconnecter</a>
     </div>  
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
