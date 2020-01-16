@@ -1,4 +1,5 @@
 <?php
+
 require('controller/frontend.php');
 require('controller/backend.php');
 
@@ -31,6 +32,7 @@ try {
                         addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                     }
                     else {
+                        echo 'le commentaire n\'a pas pu être ajouté';
                         throw new Exception('Tous les champs ne sont pas remplis');
                     }
                 }
@@ -39,25 +41,61 @@ try {
                 }
                 break;
 
+                case 'flagComment' :
+                    if (isset ($_GET['author']) && isset ($_GET['comment'])) {
+                            flaggedComment($_GET['commentId']);
+                    }
+                    break;
+
             //BACKEND
             case 'showDashboard' :
+                session_start();
+                
                 if ($_GET['action'] == 'showDashboard') {
                     showDashboard($_POST['email'], $_POST['password']);   
                 }
                 else {
                     throw new Exception('Vous n\'êtes pas autorisé à accéder à cette page');
+                    header('Location: index.php');
                 }
                 break;
 
-            case 'createPost' :
-                createPost();
-                break;
-            case 'publishPost' :
-                showDashboard($_POST['email'], $_POST['password']);   
+            case 'showGestionnaire' : 
+                session_start();
+                if (isset($_SESSION['email']) && (isset($_SESSION['password']))) {
+                    //vérifier email et mot de passe avec fonction
+
+                    listContent(); 
+                }
+                var_dump($_SESSION['email']);
+                var_dump('bonjour');
                 break;
 
+            case 'addPost' :
+                addPost();
+                break;
+            case 'publishPost' :
+                if (!empty ($_POST['title']) && !empty($_POST['content'])) {
+                    publishPost(($_POST['title']), ($_POST['content']));
+                } else {
+                    throw new Exception('Veuillez écrire l\'article avant de l\'envoyer.');   
+                }
+                break;
+
+            case 'getPostToEdit':
+                getPostToEdit($_GET['id']);
+                break;
+ 
             case 'deletePost' :
-                showDashboard($_POST['email'], $_POST['password']);   
+                if(isset($_GET['postId']) && isset($_GET['commentId']) && $_GET['postId'] > 0) {
+                  deletePost($_GET['postId'], $_GET['commentId']); 
+
+                require('view/backend/dashboardView.php');
+
+                 
+                } else {
+                  throw new Exception('L\'article n\'a pas été supprimé');
+                }
                 break;
             
         }

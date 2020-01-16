@@ -10,8 +10,7 @@ require_once('model/Manager.php');
 
 			return $request;
 		}
-	
-
+		
 		public function getPost($postId) 
 		{
 		    $dbh = $this->dbhConnect();
@@ -22,32 +21,25 @@ require_once('model/Manager.php');
 		    return $post;
 		}
 
-		public function addPost() 
+		public function createPost($title, $content) 
 		{
 			$dbh = $this->dbhConnect();
-			$request = $dbh->prepare('INSERT INTO posts (title, content) VALUES (?, ?)');
-			$newPost = $request;
+			$request = $dbh->execute('INSERT INTO posts (title, content) VALUES (:title, :content)');
+			$newPost = $request->execute(array($title, $content));
 
 			return $newPost;
 		}
 
-		public function publishPost($title, $content) 
+		public function editPost($title, $content, $id)
 		{
 			$dbh = $this->dbhConnect();
-			$request = $dbh->prepare('INSERT INTO posts (title, content) VALUES (?, ?)');
+			$request = $dbh->prepare('UPDATE posts set title = ?, content = ? WHERE id = ?');
+			$editedPost = $request->execute(array($title, $content, $id));
 
-			$publishedPost = $request;
+			return $editedPost;
+		}	
 
-			return $publishedPost;
-		}
-
-		public function editPost($id, $title, $content)
-		{
-			$dbh = $this->dbhConnect();
-			$request = $dbh->prepare('UPDATE posts set title = :title, content = :content WHERE id = :id');
-		}
-
-		public function deletePost($postId, $commentId)
+		public function erasePost($postId, $commentId)
 		{
 			$dbh = $this->dbhConnect();
 			$request = $dbh->preprare('DELETE posts, comments FROM posts, comments WHERE posts.id = ? AND comments.post_id = ?');

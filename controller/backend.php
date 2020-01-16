@@ -5,31 +5,45 @@ require_once('model/HomepageManager.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
+function adminLogsIn() 
+{
+    if (isset($_SESSION['email']) && ($_SESSION['password'])) { 
+        require('view/backend/dashboardView.php');
+    } 
+    else {
+        require('view/backend/authorisationView.php');
+    }
+}
+
 function showDashboard($email, $password)
 {
-    $adminManager = new AdminManager();
-    $adminLogsIn = $adminManager->adminSignin($email, $password);
-    var_dump('$adminLogsIn');
-    
+    if (isset($_SESSION['email']) && ($_SESSION['password'])) { 
+        var_dump($_SESSION);
+        
+        listContent();
+    } 
+    else {
+        session_start();
 
-    if ($adminLogsIn) {
-        var_dump('autorisé');
-		$hash = password_hash($password, PASSWORD_DEFAULT);
+        $adminManager = new AdminManager();
+        $adminLogsIn = $adminManager->adminSignin($email, $password);
 
-        if(filter_var($email, FILTER_VALIDATE_EMAIL) && password_verify('admin', $hash)) {
-        	listContent();
-            require('view/backend/dashboardView.php');
-        }
-        else {
-        var_dump(' non autorisé');
+        if ($adminLogsIn) {
+             $_SESSION['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+            $_SESSION['password'] = password_verify('admin', $hash);
 
-            throw new Exception('Vous n\'êtes pas autorisé à consulter cette page');
+                listContent();
+            }
+            else {
+                header('Location: index.php');
+                exit();
+            }
         }
     }
-    else {
-        throw new Exception('Tous les champs ne sont pas remplis');
-     } 
- }
+
+
+//function adminLogsOut() {}
 
 function listContent()
 {
@@ -39,27 +53,45 @@ function listContent()
     $commentManager = new CommentManager();
     $comments = $commentManager->getAllComments();
 
-
     require('view/backend/dashboardView.php');
 }
 
-function createPost() 
+function addPost() 
 {
-    var_dump('createPost backend');
-    $postManager = new PostManager();
-    $newPost =  $postManager->addPost();
-
     require('view/backend/createView.php');
+}
+function publishPost($title, $content)
+{
+    $postManager = new PostManager();
+    $postCreated = $postManager->createPost($title, $content);
+
+    if ($postCreated === false) {
+       throw new Exception('Impossible d\'ajouter le chapitre');
+    }
+    else {
+        require('view/backend/successView.php');
+    }
 }
 
 //function readPost() {}
 
-//function updatePost() {}
+function getPostToEdit($id) 
+{
+    $postManager = new PostManager();
+    $postToEdit = $postManager->getPost($id);
+
+    require('view/backend/updateView.php');
+}
+
+
 
 function deletePost($postId, $commentId) 
 {
     $postManager = new PostManager();
-    $deletePost = $postManager->deletePost($postId, $commentId);
+    $deletedPost = $postManager->erasePost($postId, $commentId);
+
+    require('view/backend/dashboardView.php');
+    
 } 
 
 function getFlaggedComments()

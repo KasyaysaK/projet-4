@@ -33,7 +33,6 @@ function post()
 
 function addComment($postId, $author, $comment)
 {
-    var_dump('expression');
     $commentManager = new CommentManager();
 
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
@@ -52,9 +51,11 @@ function flagComment($commentId)
     $flaggedComment = $commentManager->flagComment($commentId);
 
     if ($flaggedComment === false) {
-        throw new Exception('Commentaire non signalé');   
+        throw new Exception('Commentaire non signalé');
+        echo 'Le commentaire n\'a pas pu être signalé.';   
     }
     else {
+        echo 'commentaire signalé';
         header('Location: index.php?action=comment&id=' . $commentId);
     }
 }

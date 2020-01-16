@@ -34,7 +34,7 @@
  .book-banner {
     background: url(../images/a-night-in-alaska-sm.jpg) no-repeat;
     height: 600px;
-    margin-bottom: 100px;
+    text-align: center;
   } 
   .book-title {
       font-family: 'Stardos Stencil', cursive;
@@ -69,7 +69,16 @@
   }
 
 /*BACKEND*/
-  /*dashboard wrapper*/
-    .aside {
-      background-color: #343A40;
-    }
+
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 576px) {
+  .name {
+    animation: none;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: white;
+
+  }
+}

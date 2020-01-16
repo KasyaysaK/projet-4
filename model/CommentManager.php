@@ -24,12 +24,15 @@ require_once('model/Manager.php');
 		public function postComment($postId, $author, $comment)
 		{
 		    $dbh = $this->dbhConnect();
-		    $comments = $dbh->prepare('INSERT INTO comments (post_id, author, comment, comment_date, flagged) VALUES(?, ?, ?, NOW(), 0)');
-		    $affectedLines = $comments->execute(array($postId, $author, $comment));
-
-		    return $affectedLines;
+		    $comments = $dbh->prepare('INSERT INTO comments (post_id, author, comment, comment_date, flagged) VALUES (?, ?, ?, NOW(), 0)');
+		    return $comments->execute(array($postId, $author, $comment));
 		}
 
-		//public function flaggedComment()
+		public function flaggedComment($commentId) {
+			$dbh = $this->dbhConnect();
+			$flaggedComment = $dbh->prepare('UPDATE comments SET flagged = ? WHERE post_id = ?');
+
+			$flaggedComment->execute(array(TRUE, $commentId));
+		}
 	} 
 	

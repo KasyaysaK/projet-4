@@ -6,7 +6,10 @@
 		</div>
 		<form class="row" method="post">
 			<div class="col-sm-9">
-				<textarea id="mytextarea"></textarea>
+				<div class="post-editor" name="postToEdit"> 
+					<h2>Titre</h2> 
+					<p>Contenu</p> 
+				</div>
 			</div>
 			<div>
 				<div>
@@ -17,13 +20,11 @@
 						    <!-- Modal content-->
 						    <div class="modal-content">
 						      	<div class="modal-header">
-							      	<h4 class="modal-title">Aperçu de l'article</h4>
+							      	<h4 class="modal-title">Confirmation</h4>
 							        <button type="button" class="close close-btn" data-dismiss="modal">&times;</button>
 							    </div>		  
 								    <div class="modal-body">
-								      	<div class="read-post">
-       	 									<?php include('readView.php'); ?>	
-										</div>
+								   		<p>Êtes-vous sûr de vouloir publier l'article</p>
 								    </div>
 									    <div class="modal-footer">
 									        <a href="index.php?action=publishPost" class="btn btn-success" data-dismiss="modal">Publier</a>
@@ -49,7 +50,7 @@
 							      	<p>Vous êtes sur le point de supprimer votre article</p>
 							    </div>
 								    <div class="modal-footer">
-								        <a href="index.php?action=deletePost" class="btn btn-success" data-dismiss="modal">Supprimer</a>
+								        <a href="index.php?action=showDashboard" class="btn btn-success" data-dismiss="modal">Supprimer</a>
 								        <button type="button" class="btn btn-dark" data-dismiss="modal">Annuler</button>
 								    </div>
 						    </div>
@@ -64,6 +65,4 @@
 
 <?php $content = ob_get_clean(); ?>
   
-    
-
-<?php require('template.php'); ?>
+<?php require('view/backend/template.php'); ?>

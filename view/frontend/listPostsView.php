@@ -9,16 +9,15 @@
     			<h2 class="">Liste des chapitres</h2>
    
 				    <?php
-				    	while ($data = $posts->fetch())
+				    	while ($post = $posts->fetch())
 				    	{
 				    ?>
 					        <div class="">
-					            <h3>
-					                <a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']); ?></a> 
-					            </h3>
+					            <h3> <?= htmlspecialchars($post['title']); ?> </h3>
 					            
 					            <p>
-					                <?= nl2br(htmlspecialchars($data['content'])) ?>
+					                <?= htmlspecialchars(substr($post['content'], 0, 90)) ?>...
+					                <a href="index.php?action=post&amp;id=<?= $post['id'] ?>" class="btn btn-dark">Lire la suite</a>
 					           
 					            </p>
 					        </div>

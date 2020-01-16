@@ -1,13 +1,8 @@
-<footer class="container-fluid bg-dark">
-	<div class="row d-flex justify-content-around">
-		<div>À propos</div>
-		<div>Synopsis</div>
-		<div>Chapitres</div>
-		<div>
+<footer class="container-fluid bg-dark d-flex justify-content-center align-items-center">
+	<div class="row">
+		<div class="col">
 			<a class="nav-link" href="index.php"><h1 class="name">Jean Forteroche</h1></a>
-		</div>
-		<img src="" alt="" />
-		<div>
+
 			<button class="btn btn-dark" data-toggle="modal" data-target="#login-form"><i class="fab fa-keycdn"></i></button>
 			<!-- Modal -->
 			<div id="login-form" class="modal fade" role="dialog">
@@ -24,7 +19,7 @@
 						    
 								<input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Mot de passe" />
 							</div>		  		
-				      		<div class="modal-footer">
+				      		<div id="index.php?action=adminLogin" class="modal-footer">
 				        		<button class="btn btn-dark" type="submit">Se connecter</button>
 				      		</div>
 			      		</form>
@@ -32,4 +27,5 @@
 		    	</div>
 			</div>
 		</div>
-	</footer>
+	</div>
+</footer>

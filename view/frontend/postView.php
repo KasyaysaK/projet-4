@@ -31,7 +31,7 @@
 				<h4>Commentaires</h4>
 				<form id="add-comment" action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
 	       			 <div class="form-group">
-				        <input id="author" class="form-control form" aria-describedby="auteur" name="comment" placeholder="Entrez votre nom" />
+				        <input id="author" class="form-control form" aria-describedby="auteur" name="author" placeholder="Entrez votre nom" />
 				    </div>
 				    <div class="form-group">
 				        <textarea id="comment" class="form-control form" aria-describedby="commentaire" name="comment" placeholder="Entrez vore commentaire"></textarea>
@@ -64,20 +64,9 @@
 								      	<h4 class="modal-title">Signaler le commentaire</h4>
 								        <button type="button" class="close close-btn-frontend" data-dismiss="modal">&times;</button>
 								    </div>
-								    <form action="index.php?action=flagComment&amp;id=<?= $post['id'] ?>" method="POST">
+								    <form action="index.php?action=flagComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $_GET['id'] ?>" method="GET">
 									    <div class="modal-body">
-									      	<div class="form-check">
-												<input class="form-check-input" type="radio" name="flag" value="option1">
-												<label class="form-check-label" for="radio1">Contenu indésirable</label>
-												</div>
-											<div class="form-check">
-												<input class="form-check-input" type="radio" name="flag" value="option2">
-												<label class="form-check-label" for="radio2">Contenu intimidant ou menacant, harcèlement</label>
-											</div>
-											<div class="form-check">
-												<input class="form-check-input" type="radio" name="flag"  value="option3">
-												<label class="form-check-label" for="radio3">Contenu violent, à caractère pornographique ou sexuellement explicite</label>
-											</div>
+									      	<p>Êtes-vous sûr de vouloir signaler ce commentaire ?</p>
 									    </div>
 										    <div class="modal-footer modal-footer-frontend">
 										        <button type="button" class="btn btn-success" data-dismiss="modal">Signaler</button>
