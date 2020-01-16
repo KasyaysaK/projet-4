@@ -42,12 +42,12 @@ function addComment($postId, $author, $comment)
     }
     else {
         header('Location: index.php?action=post&id=' . $postId);
+        exit;
     }
 }
 
 function flagComment($commentId, $postId)
 {
-    var_dump('bonjour');
     $commentManager = new CommentManager();
     $flaggedComment = $commentManager->flaggedComment($commentId);
 
@@ -56,6 +56,7 @@ function flagComment($commentId, $postId)
         echo 'Le commentaire n\'a pas pu être signalé.';   
     }
     else {
+    var_dump('bonjour');  
         echo 'commentaire signalé';
         header('Location: index.php?action=post&id=' . $postId);
     }

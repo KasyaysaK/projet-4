@@ -25,6 +25,7 @@
                     unset($_SESSION['message']);
                 ?>
             </div>
+        <?php endif ?>
 
         <?= $content ?>
 

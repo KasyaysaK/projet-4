@@ -6,7 +6,6 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active js-scrollTo zoom" href="index.php">Accueil<span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link  zoom" href="index.php#about">À propos</a>
       <a class="nav-item nav-link zoom" href="index.php#book-summary">Synopsis</a>
       <a class="nav-item nav-link zoom" href="index.php?action=listPosts">Chapitres</a>
     </div>

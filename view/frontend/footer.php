@@ -3,7 +3,7 @@
 		<div class="col">
 			<a class="nav-link" href="index.php"><h1 class="name">Jean Forteroche</h1></a>
 
-			<a href="index.php?action=showDashboard" class="btn btn-dark"><i class="fab fa-keycdn"></i></a>
+			<a href="index.php?action=adminLogsIn" class="btn btn-dark"><i class="fab fa-keycdn"></i></a>
 			
 		</div>
 	</div>

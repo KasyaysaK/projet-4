@@ -33,7 +33,7 @@ require_once('model/Manager.php');
 		public function editPost($title, $content, $id)
 		{
 			$dbh = $this->dbhConnect();
-			$request = $dbh->prepare('UPDATE posts set title = ?, content = ? WHERE id = ?');
+			$request = $dbh->prepare('UPDATE posts set title = :title, content = :content WHERE id = :id');
 			$editedPost = $request->execute(array($title, $content, $id));
 
 			return $editedPost;

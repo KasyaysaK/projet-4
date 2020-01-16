@@ -11,6 +11,14 @@ require_once('model/Manager.php');
 			return $request;
 		}
 
+		public function getFlaggedComments()
+		{
+			$dbh = $this->dbhConnect();
+			$request = $dbh->query('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr FROM comments WHERE flagged = 1 ORDER BY comment_date DESC');
+
+			return $request;
+		}
+
 		public function getComments($postId) 
 		{
 		    $dbh = $this->dbhConnect();
@@ -30,9 +38,9 @@ require_once('model/Manager.php');
 
 		public function flaggedComment($commentId) {
 			$dbh = $this->dbhConnect();
-			$flaggedComment = $dbh->prepare('UPDATE comments SET flagged = 1 WHERE post_id = :id');
+			$flaggedComment = $dbh->prepare('UPDATE comments SET flagged = 1 WHERE id = ?');
 
-			$flaggedComment->execute(array(1, $commentId));
+			$flaggedComment->execute(array($commentId));
 		}
 	} 
 	

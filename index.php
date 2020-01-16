@@ -42,22 +42,27 @@ try {
                 break;
 
                 case 'flagComment' :
-                    if (isset ($_GET['author']) && isset ($_GET['comment'])) {
-                            flaggedComment($_GET['commentId']);
-                    }
-                    break;
-
-                case 'flagComment' :
                     if (isset ($_GET['postId']) && isset ($_GET['commentId'])) {
                         flagComment($_GET['commentId'], $_GET['postId']);
                     }
                     break;
 
             //BACKEND
+            case 'adminLogsIn' :
+                session_start();
+                if (!isset($_SESSION['email']) || !isset($_SESSION['password'])) {
+                     adminLogsIn();
+                   
+                }
+                else {
+                   showDashboard($_SESSION['email'], $_SESSION['password']);
+                }
+                break;
+
             case 'showDashboard' :
                 session_start();
                 
-                if (!isset($_SESSION)) {
+                if (!isset($_SESSION['email']) || !isset($_SESSION['password'])) {
                     showDashboard($_POST['email'], $_POST['password']);   
                 }
                 elseif (isset($_SESSION['email']) && (isset($_SESSION['password']))) {
@@ -74,7 +79,7 @@ try {
                 break;
             case 'publishPost' :
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
-                    publishPost(($_POST['title']), ($_POST['content']));
+                    publishPost($_POST['title'], $_POST['content']);
                 } else {
                     throw new Exception('Veuillez écrire l\'article avant de l\'envoyer.');   
                 }
@@ -83,6 +88,7 @@ try {
             case 'getPostToEdit':
                 getPostToEdit($_GET['id']);
                 break;
+            
  
             case 'deletePost' :
                 if(isset($_GET['postId']) && isset($_GET['commentId']) && $_GET['postId'] > 0) {

@@ -5,29 +5,17 @@ require_once('model/HomepageManager.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 
-//function adminLogsIn() 
-//{
-//    if (isset($_SESSION['email']) && ($_SESSION['password'])) { 
-//        require('view/backend/dashboardView.php');
-//    } 
-//    else {
-//        require('view/frontend/authorisationView.php');
-//    }
-//}
+function adminLogsIn() 
+{
+    require('view/frontend/login.php');
+}
 
 function showDashboard($email, $password)
 {
-//    if (isset($_SESSION['email']) && ($_SESSION['password'])) { 
-//        
-//        listContent();
-//    } 
-//    else {
-        var_dump('yo');
-        session_start();
+        //session_start();
         $adminManager = new AdminManager();
         $adminLogsIn = $adminManager->adminSignin($email, $password);
         if ($adminLogsIn) {
-                var_dump('logged in');
 
              $_SESSION['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
             $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -35,16 +23,15 @@ function showDashboard($email, $password)
                 listContent();
             }
             else {
-                var_dump('not logged in');
                 require('view/frontend/login.php');
             }
         
     }
 
 
-
 function adminLogsOut() {
     var_dump($_SESSION);
+    session_start();
     session_destroy();
 
     header('Location: index.php');
@@ -57,7 +44,7 @@ function listContent()
     $posts = $postManager->getPosts();
 
     $commentManager = new CommentManager();
-    $comments = $commentManager->getAllComments();
+    $comments = $commentManager->getFlaggedComments();
 
     require('view/backend/dashboardView.php');
 }
@@ -68,14 +55,16 @@ function addPost()
 }
 function publishPost($title, $content)
 {
+    var_dump('newpost');
     $postManager = new PostManager();
     $postCreated = $postManager->createPost($title, $content);
 
     if ($postCreated === false) {
-       throw new Exception('Impossible d\'ajouter le chapitre');
+        throw new Exception('Impossible d\'ajouter le chapitre');
     }
     else {
-        require('view/backend/successView.php');
+        header('Location: index.php?action=showDashboard');
+        exit;
     }
 }
 
