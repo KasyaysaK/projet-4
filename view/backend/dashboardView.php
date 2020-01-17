@@ -82,7 +82,7 @@
 			      <td><?= htmlspecialchars($comment['comment']) ?></td>
 			      <td><?= $comment['comment_date_fr'] ?></td>
 			      <td class="mx-2">
-			      	<a href="index.php?action=validateComment&amp;commentId=<?= $comment['id'] ?>"><i class="fas fa-check"></i></a></i> | <a href="index.php?action=rejectComment"><i class="fas fa-times"></i></a>
+			      	<a href="index.php?action=validateComment&amp;commentId=<?= $comment['id'] ?>"><i class="fas fa-check"></i></a></i> | <a href="index.php?action=rejectComment&amp;commentId=<?= $comment['id'] ?>"><i class="fas fa-times"></i></a>
 			      </td>
 			    </tr>
 			<?php endwhile ?>

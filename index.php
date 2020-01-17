@@ -63,7 +63,13 @@ try {
                 session_start();
                 
                 if (!isset($_SESSION['email']) || !isset($_SESSION['password'])) {
-                    showDashboard($_POST['email'], $_POST['password']);   
+                    if (isset($_POST['password']) && $_POST['password'] == 'admin'){
+                         showDashboard($_POST['email'], $_POST['password']);  
+                    }
+                    else {
+                        echo 'Mauvais identifiant ou mot de passe';
+                         require('view/frontend/login.php');
+                    }
                 }
                 elseif (isset($_SESSION['email']) && (isset($_SESSION['password']))) {
                     showDashboard($_SESSION['email'], $_SESSION['password']);    
@@ -76,14 +82,23 @@ try {
 
             case 'validateComment' :
                 var_dump('coucou depuis l\'index');
-                    if (isset ($_GET['postId']) && isset ($_GET['commentId'])) {
-                        validateComment($_GET['commentId'], $_GET['postId']);
+                    if (isset ($_GET['commentId'])) {
+                        validateComment($_GET['commentId']);
                     }
                     else {
                     throw new Exception('L\'identifiant de billet n\'existe pas.');
                 }
                     break;
+
+
             case 'rejectComment' :
+                if (isset ($_GET['commentId'])) {
+                        rejectComment($_GET['commentId']);
+                    }
+                    else {
+                    throw new Exception('L\'identifiant de billet n\'existe pas.');
+                }
+                    break;
 
 
             case 'addPost' :
@@ -103,8 +118,9 @@ try {
                 getPostToEdit($_GET['id']);
                 break;
             case 'updatePost' :
+                var_dump($_POST['content']);
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
-                    updatePost($_POST['title'], $_POST['content']);
+                    updatePost($_GET['postId'], $_POST['title'], $_POST['content']);
                 }
                 else {
                     var_dump('erreur mise à jour');
@@ -114,8 +130,8 @@ try {
             
  
             case 'deletePost' :
-                if(isset($_GET['id'])) {
-                  deletePost(); 
+                if(isset($_GET['postId'])) {
+                  deletePost($_GET['postId']); 
                 } else {
                     var_dump('problem');
                   throw new Exception('L\'article n\'a pas été supprimé');

@@ -50,6 +50,12 @@ require_once('model/Manager.php');
 			$validateComment->execute(array($commentId));
 		}
 		
+		public function rejectComment($commentId) {
+			$dbh = $this->dbhConnect();
+			$rejectComment = $dbh->prepare('DELETE FROM comments WHERE id = ?');
+
+			$rejectComment->execute(array($commentId));
+		}
 
 	} 
 	

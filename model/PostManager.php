@@ -30,11 +30,12 @@ require_once('model/Manager.php');
 			return $newPost;
 		}
 
-		public function editPost()
+		public function editPost($id, $title, $content)
 		{
+			var_dump($id);
 			$dbh = $this->dbhConnect();
 			$request = $dbh->prepare('UPDATE posts set title = ?, content = ? WHERE id = ?');
-			$editedPost = $request->execute(array($title, $content));
+			$editedPost = $request->execute(array($title, $content, $id));
 
 			return $editedPost;
 		}		
@@ -42,7 +43,7 @@ require_once('model/Manager.php');
 		public function erasePost($id)
 		{
 			$dbh = $this->dbhConnect();
-			$request = $dbh->preprare('DELETE FROM posts WHERE id = :id');
-			$deletedPost = $request->execute(array(':id' => $id));
+			$request = $dbh->prepare('DELETE FROM posts WHERE id = ?');
+			$deletedPost = $request->execute(array($id));
 		}
 	}

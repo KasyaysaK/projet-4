@@ -12,12 +12,11 @@ function adminLogsIn()
 
 function showDashboard($email, $password)
 {
-        //session_start();
         $adminManager = new AdminManager();
         $adminLogsIn = $adminManager->adminSignin($email, $password);
-        if ($adminLogsIn) {
 
-             $_SESSION['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
+        if ($adminLogsIn) {
+            $_SESSION['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $_SESSION['password'] = password_verify('admin', $hash);
                 listContent();
@@ -25,8 +24,7 @@ function showDashboard($email, $password)
             else {
                 require('view/frontend/login.php');
                 echo 'Identifiant ou mot de passe erroné';
-            }
-        
+            }   
     }
 
 function adminLogsOut() {
@@ -93,10 +91,10 @@ function getPostToEdit($id)
     require('view/backend/updateView.php');
 }
 
-function updatePost($title, $content)
+function updatePost($id, $title, $content)
 {
     $postManager = new PostManager();
-    $postUpdated = $postManager->editPost($title, $content);
+    $postUpdated = $postManager->editPost($id, $title, $content);
 
     if ($postUpdated === false) {
         echo 'Impossible de mettre à jour le chapitre';
@@ -113,8 +111,7 @@ function deletePost($id)
     $postManager = new PostManager();
     $deletedPost = $postManager->erasePost($id);
 
-    require('view/backend/dashboardView.php');
-    
+    listContent();
 } 
 
 function getFlaggedComments()
@@ -123,13 +120,17 @@ function getFlaggedComments()
 	$getFlaggedComments = $commentManager->flaggedComments();
 }
 
-function validateComment($commentId, $postId) {
+function validateComment($commentId) {
     $commentManager = new CommentManager();
-    $validateComment = $commentManager->validateComment();
+    $validatedComment = $commentManager->validateComment($commentId);
 
-    header('Location: index.php?action=showDashboard');
-        exit;
+    listContent();
 }
 
-//function rejectFlaggeComment() {}
+function rejectComment($commentId) {
+    $commentManager = new CommentManager();
+    $rejectedComment = $commentManager->rejectComment($commentId);
+
+    listContent();
+}
 
