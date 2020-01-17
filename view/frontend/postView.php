@@ -6,7 +6,7 @@
    	<div class="container">
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
-				<div class="my-4">
+				<div class="d-flex justify-content-between my-4">
 					<a href="index.php" class="btn btn-dark">Revenir à la page d'accueil</a>
 					<a href="index.php?action=listPosts" class="btn btn-dark">Revenir à la liste des chapitres</a>	
 				</div>
@@ -27,9 +27,7 @@
 				   		</div>
 					    
 				    </div>
-				    <div class="card-footer"><a href="#add-comment">Donnez-moi votre avis</a></div>
-				    
-				    
+				    <div class="card-footer"><a href="#add-comment">Donnez-moi votre avis</a></div> 
 				</div>
 
 				<h4>Commentaires</h4>

@@ -1,9 +1,9 @@
 <?php
 
 require_once('model/AdminManager.php');
+require_once('model/CommentManager.php');
 require_once('model/HomepageManager.php');
 require_once('model/PostManager.php');
-require_once('model/CommentManager.php');
 
 function adminLogsIn() 
 {
@@ -12,20 +12,20 @@ function adminLogsIn()
 
 function showDashboard($email, $password)
 {
-        $adminManager = new AdminManager();
-        $adminLogsIn = $adminManager->adminSignin($email, $password);
+    $adminManager = new \JeanForteroche\Blog\Model\AdminManager();
+    $adminLogsIn = $adminManager->adminSignin($email, $password);
 
-        if ($adminLogsIn) {
-            $_SESSION['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            $_SESSION['password'] = password_verify('admin', $hash);
-                listContent();
-            }
-            else {
-                require('view/frontend/login.php');
-                echo 'Identifiant ou mot de passe erroné';
-            }   
-    }
+    if ($adminLogsIn) {
+        $_SESSION['email'] = filter_var($email, FILTER_VALIDATE_EMAIL);
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $_SESSION['password'] = password_verify('admin', $hash);
+            listContent();
+        }
+        else {
+            require('view/frontend/login.php');
+            echo 'Identifiant ou mot de passe erroné';
+        }   
+}
 
 function adminLogsOut() {
     session_start();
@@ -39,26 +39,24 @@ function addPost()
 {
     require('view/backend/createView.php');
 }
+
 function publishPost($title, $content)
 {
-    $postManager = new PostManager();
+    $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $postCreated = $postManager->createPost($title, $content);
 
     if ($postCreated === false) {
-        var_dump('erreur depuis le backend');
         throw new Exception('Impossible d\'ajouter le chapitre');
     }
     else {
-        var_dump('post crée depuis le backend');
         header('Location: index.php?action=showDashboard');
         exit;
-    }header('Location: index.php?action=showDashboard');
-        exit;
+    }
 }
 
 function getAllPosts()
 {
-    $postManager = new PostManager();
+    $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $posts = $postManager->getPosts();
 
     require('view/backend/postsView.php');
@@ -66,7 +64,7 @@ function getAllPosts()
 
 function getAllComments()
 {
-    $commentManager = new CommentManager();
+    $commentManager = new \JeanForteroche\Blog\Model\CommentManager();
     $comments = $commentManager->getAllComments();
 
     require('view/backend/commentsView.php');
@@ -74,10 +72,10 @@ function getAllComments()
 
 function listContent()
 {
-    $postManager = new PostManager();
+    $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $posts = $postManager->getPosts();
 
-    $commentManager = new CommentManager();
+    $commentManager = new \JeanForteroche\Blog\Model\CommentManager();
     $comments = $commentManager->getFlaggedComments();
 
     require('view/backend/dashboardView.php');
@@ -85,7 +83,7 @@ function listContent()
 
 function getPostToEdit($id) 
 {
-    $postManager = new PostManager();
+    $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $postToEdit = $postManager->getPost($id);
 
     require('view/backend/updateView.php');
@@ -93,7 +91,7 @@ function getPostToEdit($id)
 
 function updatePost($id, $title, $content)
 {
-    $postManager = new PostManager();
+    $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $postUpdated = $postManager->editPost($id, $title, $content);
 
     if ($postUpdated === false) {
@@ -108,7 +106,7 @@ function updatePost($id, $title, $content)
 
 function deletePost($id) 
 {
-    $postManager = new PostManager();
+    $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $deletedPost = $postManager->erasePost($id);
 
     listContent();
@@ -116,19 +114,19 @@ function deletePost($id)
 
 function getFlaggedComments()
 {
-    $commentManager = new CommentManager();
+    $commentManager = new \JeanForteroche\Blog\Model\CommentManager();
 	$getFlaggedComments = $commentManager->flaggedComments();
 }
 
 function validateComment($commentId) {
-    $commentManager = new CommentManager();
+    $commentManager = new \JeanForteroche\Blog\Model\CommentManager();
     $validatedComment = $commentManager->validateComment($commentId);
 
     listContent();
 }
 
 function rejectComment($commentId) {
-    $commentManager = new CommentManager();
+    $commentManager = new \JeanForteroche\Blog\Model\CommentManager();
     $rejectedComment = $commentManager->rejectComment($commentId);
 
     listContent();

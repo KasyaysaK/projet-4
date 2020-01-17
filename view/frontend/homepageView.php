@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 	<?php include('header.php'); ?>
-	<div id="about" class="container my-2">
+	<div class="container my-2">
 		<div class="row">
 			<div class="col-8 offset-2 text-center">
 				<h2>Le livre d'une autre façon</h2>

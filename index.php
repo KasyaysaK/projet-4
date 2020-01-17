@@ -8,7 +8,9 @@ try {
     if (isset($_GET['action'])) {
 
         switch ($_GET['action']) {
+
             //FRONTEND
+
             case 'homepage':
                 homepage();
                 break;
@@ -32,8 +34,7 @@ try {
                         addComment($_GET['id'], $_POST['author'], $_POST['comment']);
                     }
                     else {
-                        echo 'le commentaire n\'a pas pu être ajouté';
-                        throw new Exception('Tous les champs ne sont pas remplis');
+                        require('view/frontend/error.php');
                     }
                 }
                 else {
@@ -41,18 +42,17 @@ try {
                 }
                 break;
 
-                case 'flagComment' :
-                    if (isset ($_GET['postId']) && isset ($_GET['commentId'])) {
-                        flagComment($_GET['commentId'], $_GET['postId']);
-                    }
-                    break;
+            case 'flagComment' :
+                if (isset ($_GET['postId']) && isset ($_GET['commentId'])) {
+                    flagComment($_GET['commentId'], $_GET['postId']);
+                }
+                break;
 
             //BACKEND
             case 'adminLogsIn' :
                 session_start();
                 if (!isset($_SESSION['email']) || !isset($_SESSION['password'])) {
-                     adminLogsIn();
-                   
+                     adminLogsIn();    
                 }
                 else {
                    showDashboard($_SESSION['email'], $_SESSION['password']);
@@ -60,15 +60,13 @@ try {
                 break;
 
             case 'showDashboard' :
-                session_start();
-                
+                session_start();     
                 if (!isset($_SESSION['email']) || !isset($_SESSION['password'])) {
                     if (isset($_POST['password']) && $_POST['password'] == 'admin'){
                          showDashboard($_POST['email'], $_POST['password']);  
                     }
                     else {
-                        echo 'Mauvais identifiant ou mot de passe';
-                         require('view/frontend/login.php');
+                         require('view/frontend/authorisationView.php');
                     }
                 }
                 elseif (isset($_SESSION['email']) && (isset($_SESSION['password']))) {
@@ -81,15 +79,13 @@ try {
                 break;
 
             case 'validateComment' :
-                var_dump('coucou depuis l\'index');
                     if (isset ($_GET['commentId'])) {
                         validateComment($_GET['commentId']);
                     }
                     else {
                     throw new Exception('L\'identifiant de billet n\'existe pas.');
                 }
-                    break;
-
+                break;
 
             case 'rejectComment' :
                 if (isset ($_GET['commentId'])) {
@@ -98,12 +94,12 @@ try {
                     else {
                     throw new Exception('L\'identifiant de billet n\'existe pas.');
                 }
-                    break;
-
+                break;
 
             case 'addPost' :
                 addPost();
                 break;
+
             case 'publishPost' :
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
                     var_dump('post crée');
@@ -117,6 +113,7 @@ try {
             case 'getPostToEdit':
                 getPostToEdit($_GET['id']);
                 break;
+
             case 'updatePost' :
                 var_dump($_POST['content']);
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
@@ -128,7 +125,6 @@ try {
                 }
                 break;
             
- 
             case 'deletePost' :
                 if(isset($_GET['postId'])) {
                   deletePost($_GET['postId']); 
@@ -145,16 +141,19 @@ try {
             case 'getAllComments' :
                 getAllComments();
                 break;
+
             case 'adminLogsOut' :
                 adminLogsOut();
+                break;
+        
         }
+        
     }
     else {
         homepage();
     }
 
 }
-
 catch(Exception $e) {
     $errorMessage = $e->getMessage();
 }

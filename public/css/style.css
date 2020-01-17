@@ -1,71 +1,77 @@
 /*FRONTEND*/
-  .frontend-body {
-    background-color: #14121F;
-    
-    color: white;
+.frontend-body {
+  background-color: #14121F;
+  padding-bottom: 120px;
+  color: white;
+}
+.title {
+  background: url(../images/a-night-in-alaska.jpg) no-repeat;
+}
+.name {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 2.8em;
+  letter-spacing: 4px;
+  overflow: hidden;
+  background: linear-gradient(90deg, #14121F, #fff, #14121F);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  animation: animate 5s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+}
+@keyframes animate {
+  0% {
+    background-position: -500%;
   }
-  
-  .title {
-    background: url(../images/a-night-in-alaska-xs.jpg) no-repeat;
+  50% {
+    background-position: 0%;
   }
-  .name {
-    position: relative;
-    text-transform: uppercase;
-    font-size: 2.8em;
-    letter-spacing: 4px;
-    overflow: hidden;
-    background: linear-gradient(90deg, #14121F, #fff, #14121F);
-    background-repeat: no-repeat;
-    background-size: 80%;
-    animation: animate 5s linear infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  100% {
+    background-position: 500%;
   }
-  @keyframes animate {
-    0% {
-      background-position: -500%;
-    }
-    50% {
-      background-position: 0%;
-    }
-    100% {
-      background-position: 500%;
-    }
-  }
- .book-banner {
-    background: url(../images/a-night-in-alaska-sm.jpg) no-repeat;
-    height: 600px;
-    text-align: center;
-  } 
-  .book-title {
-      font-family: 'Stardos Stencil', cursive;
-      font-weight: bold;
-      font-size: 4em;
-      text-shadow: #000 2px 4px 8px;
-  }
-
-  .content {
-    margin: 25px 0; 
-    background-color: #343a40;
-  }
-  .flag {
-    float: right;
-  }
-  .close-btn-frontend, .close-btn-frontend:hover {
-    color: white;
-  }
-  .modal-header-frontend {
-   border-bottom: 1px solid rgba(0,0,0,.125);
-  }
-  .modal-footer-frontend {
-   border-top: 1px solid rgba(0,0,0,.125);
-  }
+}
+.book-banner {
+  background: url(../images/a-night-in-alaska-sm.jpg) no-repeat;
+  height: 600px;
+  text-align: center;
+} 
+.book-title {
+    font-family: 'Stardos Stencil', cursive;
+    font-weight: bold;
+    font-size: 4em;
+    text-shadow: #000 2px 4px 8px;
+}
+.content {
+  margin: 25px 0; 
+  background-color: #343a40;
+}
+.flag {
+  float: right;
+}
+.close-btn-frontend, .close-btn-frontend:hover {
+  color: white;
+}
+.modal-header-frontend {
+ border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.modal-footer-frontend {
+ border-top: 1px solid rgba(0,0,0,.125);
+}
+.fa-keycdn {
+  color: gray;
+}
 
 /*BACKEND*/
+.fa-check {
+  color: green;
+}
+.fa-times {
+  color: red;
+}
 
 
 /* RESPONSIVE */
-
 @media screen and (max-width: 576px) {
   .name {
     animation: none;

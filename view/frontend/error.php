@@ -13,7 +13,7 @@
 				   <div class="card-body">
 				   		<div class="card-text">
 				   			<p>
-					        	Vous n'êtes pas autorisé à accéder à cette page...
+					        	Quelque chose n'a pas fonctionné comme prévu...
 					    	</p>
 
 				   		</div>

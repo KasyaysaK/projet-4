@@ -1,33 +1,34 @@
 <?php ob_start(); ?>
 
-	<div class="container">
-		<div class="responsive-table-line"> 
-			<h2 class="d-flex justify-content-center my-4">Derniers articles publiés</h2> 
-		</div>
-		
-		<div>
-			<table class="table table-light table-striped .w-auto">
-		  <thead>
-		    <tr>
-		      <th scope="col">Titre</th>
-		      <th scope="col">Contenu</th>
-		      <th scope="col">Date de publication</th>
-		      <th>Action</th>
+<div class="container my-5">
 
-		    </tr> 		
-		  </thead>
-		  <tbody>
-
+	<div class="d-flex justify-content-between align-items-center my-4"> 
+		<h2>Derniers articles publiés</h2> 
+		<a href="index.php?action=getAllPosts">Voir tous les articles</a>
+	</div>
+	
+	<div class="responsive-table-line">
+		<table class="table table-light table-striped .w-auto">
+		  	<thead>
+			    <tr>
+		     		<th scope="col">Titre</th>
+		      		<th scope="col">Contenu</th>
+	      			<th scope="col">Date de publication</th>
+		      		<th>Action</th>
+			    </tr> 		
+		  	</thead>
+	  		<tbody>
 		  	<?php while ($post = $posts->fetch()): ?>
 			    <tr>
-			      <td><?= htmlspecialchars($post['title']); ?></td>
-			      <td><?= htmlspecialchars(substr($post['content'], 0, 90)) ?>...</td>
-			      <td><?= $post['creation_date_fr'] ?></td>
-			      <td>
-			      	<a href="index.php?action=getPostToEdit&amp;id=<?= $post['id'] ?>"><i class="fas fa-edit"></a></i> | <!-- Button trigger modal -->
-						<a data-toggle="modal" data-target="#exampleModal">
-						  <i class="far fa-trash-alt">
-						</a> 
+		       		<td><?= htmlspecialchars($post['title']); ?></td>
+			      	<td><?= htmlspecialchars(substr($post['content'], 0, 50)) ?>...</td>
+			      	<td><?= $post['creation_date_fr'] ?></td>
+			      	<td>
+				      	<a class="btn" href="index.php?action=getPostToEdit&amp;id=<?= $post['id'] ?>"><i class="fas fa-edit"></i></a> | <!-- Button trigger modal -->
+						<button class="btn" data-toggle="modal" data-target="#exampleModal">
+						  <i class="far fa-trash-alt"></i>
+						</button> 
+					</td>
 
 						<!-- Modal -->
 						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -49,48 +50,49 @@
 						      </div>
 						    </div>
 						  </div>
-						</div> 
-			      </td>
+						</div>
+
 			    </tr>
-			<?php endwhile ?>
-			    
-		  </tbody>
+			<?php endwhile ?>    
+	  		</tbody>
 		</table>
-		</div>	
+</div>	
+
+</div>
+
+<div class="container my-5">
+	<div class="d-flex justify-content-between align-items-center my-4"> 
+		<h2>Commentaires signalés</h2> 
+		<a href="index.php?action=getAllComments">Voir tous les commentaires</a>
 	</div>
-
-	<div class="container">
-		<div class="d-flex justify-content-center my-4"> 
-			<h2>Commentaires signalés</h2> 
-		</div>
-		
-		<div class="table-responsive">
-			<table class="table table-light table-striped">
-		  <thead>
-		    <tr>
-		      <th scope="col">Nom</th>
-		      <th scope="col">Commentaire</th>
-		      <th scope="col">Date de publication</th>
-		      <th>Action</th>
-
-		    </tr> 		
-		  </thead>
-		  <tbody>
-		  	<?php while ($comment = $comments->fetch()): ?>
+	
+	<div class="table-responsive">
+		<table class="table table-light table-striped">
+	  		<thead>
 			    <tr>
-			      <td><?= htmlspecialchars($comment['author']) ?></td>
-			      <td><?= htmlspecialchars($comment['comment']) ?></td>
-			      <td><?= $comment['comment_date_fr'] ?></td>
-			      <td class="mx-2">
-			      	<a href="index.php?action=validateComment&amp;commentId=<?= $comment['id'] ?>"><i class="fas fa-check"></i></a></i> | <a href="index.php?action=rejectComment&amp;commentId=<?= $comment['id'] ?>"><i class="fas fa-times"></i></a>
-			      </td>
-			    </tr>
-			<?php endwhile ?>
+			      	<th scope="col">Nom</th>
+			      	<th scope="col">Commentaire</th>
+			      	<th scope="col">Date de publication</th>
+			      	<th>Action</th>
+
+			    </tr> 		
+		  	</thead>
+		  	<tbody>
+		  		<?php while ($comment = $comments->fetch()): ?>
+				    <tr>
+				      	<td><?= htmlspecialchars($comment['author']) ?></td>
+				      	<td><?= htmlspecialchars($comment['comment']) ?></td>
+				      	<td><?= $comment['comment_date_fr'] ?></td>
+				      	<td class="mx-2">
+				      		<a class="btn" href="index.php?action=validateComment&amp;commentId=<?= $comment['id'] ?>"><i class="fas fa-check"></i></a> | <a class="btn" href="index.php?action=rejectComment&amp;commentId=<?= $comment['id'] ?>"><i class="fas fa-times"></i></a>
+				     	</td>
+				    </tr>
+				<?php endwhile ?>
 		  </tbody>
 		</table>
-		</div>
-		
-	</div>
+	</div>	
+</div>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>

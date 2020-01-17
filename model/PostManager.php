@@ -1,5 +1,7 @@
 <?php 
-require_once('model/Manager.php');
+	namespace JeanForteroche\Blog\Model;
+
+	require_once('model/Manager.php');
 
 	class PostManager extends Manager
 	{

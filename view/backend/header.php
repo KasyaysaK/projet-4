@@ -26,7 +26,7 @@
         <a class="nav-link" href="index.php?action=getAllPosts">Billets <i class="fab fa-readme"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?action=getAllComments">Commentaires <i class="far fa-comments"></i></a>
+        <a class="nav-link" href="index.php?action=getAllComments">Commentaires <i class="fas fa-comments"></i></a>
       </li>
     </ul>
   </div>
