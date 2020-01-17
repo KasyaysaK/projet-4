@@ -24,18 +24,54 @@ function showDashboard($email, $password)
             }
             else {
                 require('view/frontend/login.php');
+                echo 'Identifiant ou mot de passe erroné';
             }
         
     }
 
-
 function adminLogsOut() {
-    var_dump($_SESSION);
     session_start();
     session_destroy();
 
     header('Location: index.php');
     exit;
+}
+
+function addPost() 
+{
+    require('view/backend/createView.php');
+}
+function publishPost($title, $content)
+{
+    $postManager = new PostManager();
+    $postCreated = $postManager->createPost($title, $content);
+
+    if ($postCreated === false) {
+        var_dump('erreur depuis le backend');
+        throw new Exception('Impossible d\'ajouter le chapitre');
+    }
+    else {
+        var_dump('post crée depuis le backend');
+        header('Location: index.php?action=showDashboard');
+        exit;
+    }header('Location: index.php?action=showDashboard');
+        exit;
+}
+
+function getAllPosts()
+{
+    $postManager = new PostManager();
+    $posts = $postManager->getPosts();
+
+    require('view/backend/postsView.php');
+}
+
+function getAllComments()
+{
+    $commentManager = new CommentManager();
+    $comments = $commentManager->getAllComments();
+
+    require('view/backend/commentsView.php');
 }
 
 function listContent()
@@ -49,27 +85,6 @@ function listContent()
     require('view/backend/dashboardView.php');
 }
 
-function addPost() 
-{
-    require('view/backend/createView.php');
-}
-function publishPost($title, $content)
-{
-    var_dump('newpost');
-    $postManager = new PostManager();
-    $postCreated = $postManager->createPost($title, $content);
-
-    if ($postCreated === false) {
-        throw new Exception('Impossible d\'ajouter le chapitre');
-    }
-    else {
-        header('Location: index.php?action=showDashboard');
-        exit;
-    }
-}
-
-//function readPost() {}
-
 function getPostToEdit($id) 
 {
     $postManager = new PostManager();
@@ -78,12 +93,25 @@ function getPostToEdit($id)
     require('view/backend/updateView.php');
 }
 
-
-
-function deletePost($postId, $commentId) 
+function updatePost($title, $content)
 {
     $postManager = new PostManager();
-    $deletedPost = $postManager->erasePost($postId, $commentId);
+    $postUpdated = $postManager->editPost($title, $content);
+
+    if ($postUpdated === false) {
+        echo 'Impossible de mettre à jour le chapitre';
+    }
+    else {
+        header('Location: index.php?action=showDashboard');
+        exit;
+    }
+}
+
+
+function deletePost($id) 
+{
+    $postManager = new PostManager();
+    $deletedPost = $postManager->erasePost($id);
 
     require('view/backend/dashboardView.php');
     
@@ -95,6 +123,13 @@ function getFlaggedComments()
 	$getFlaggedComments = $commentManager->flaggedComments();
 }
 
-//function updateFlaggedComment() {}
+function validateComment($commentId, $postId) {
+    $commentManager = new CommentManager();
+    $validateComment = $commentManager->validateComment();
 
-//function deleteFlaggeComment() {}
+    header('Location: index.php?action=showDashboard');
+        exit;
+}
+
+//function rejectFlaggeComment() {}
+

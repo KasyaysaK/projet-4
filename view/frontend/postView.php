@@ -6,8 +6,12 @@
    	<div class="container">
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
-				 <!-- breadcrumbs -->
-				<p><a class="nav-link" href="index.php">Retourner à la page d'accueil</a></p>
+				<div class="my-4">
+					<a href="index.php" class="btn btn-dark">Revenir à la page d'accueil</a>
+					<a href="index.php?action=listPosts" class="btn btn-dark">Revenir à la liste des chapitres</a>	
+				</div>
+
+
 
 				<div class="card content">
 					<div class="card-header d-flex justify-content-between">
@@ -54,7 +58,33 @@
 		  	  			<p class="card-text"><?= htmlspecialchars($comment['comment']) ?></p>
 					</div>
 				   	<div class="card-footer">
-				   		<a href="index.php?action=flagComment&amp;postId=<?= $post['id'] ?>&amp;commentId=<?= $comment['id'] ?>" class="btn btn-dark flag"><i class="fas fa-exclamation-triangle warning"></i></a>
+				   		<!-- Button trigger modal -->
+						<button type="button" class="btn btn-dark flag" data-toggle="modal" data-target="#exampleModal">
+						  <i class="fas fa-exclamation-triangle warning"></i>
+						</button>
+
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Signaler le commentaire</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        <p>Êtes-vous sûr-e de vouloir supprimer le commentaire ?</p>
+						      </div>
+						      <div class="modal-footer">
+						      	<a href="index.php?action=flagComment&amp;postId=<?= $post['id'] ?>&amp;commentId=<?= $comment['id'] ?>" class="btn btn-secondary flag">Signaler</a>
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+						   
+						      </div>
+						    </div>
+						  </div>
+						</div>
+				   		
 				   	</div>
 				</div>
 

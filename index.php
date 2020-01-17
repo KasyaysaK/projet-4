@@ -74,13 +74,27 @@ try {
                 }
                 break;
 
+            case 'validateComment' :
+                var_dump('coucou depuis l\'index');
+                    if (isset ($_GET['postId']) && isset ($_GET['commentId'])) {
+                        validateComment($_GET['commentId'], $_GET['postId']);
+                    }
+                    else {
+                    throw new Exception('L\'identifiant de billet n\'existe pas.');
+                }
+                    break;
+            case 'rejectComment' :
+
+
             case 'addPost' :
                 addPost();
                 break;
             case 'publishPost' :
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
+                    var_dump('post crée');
                     publishPost($_POST['title'], $_POST['content']);
                 } else {
+                    var_dump('erreur');
                     throw new Exception('Veuillez écrire l\'article avant de l\'envoyer.');   
                 }
                 break;
@@ -88,20 +102,33 @@ try {
             case 'getPostToEdit':
                 getPostToEdit($_GET['id']);
                 break;
+            case 'updatePost' :
+                if (!empty ($_POST['title']) && !empty($_POST['content'])) {
+                    updatePost($_POST['title'], $_POST['content']);
+                }
+                else {
+                    var_dump('erreur mise à jour');
+                    throw new Exception('Veuillez écrire l\'article avant de l\'envoyer.');   
+                }
+                break;
             
  
             case 'deletePost' :
-                if(isset($_GET['postId']) && isset($_GET['commentId']) && $_GET['postId'] > 0) {
-                  deletePost($_GET['postId'], $_GET['commentId']); 
-
-                require('view/backend/dashboardView.php');
-
-                 
+                if(isset($_GET['id'])) {
+                  deletePost(); 
                 } else {
+                    var_dump('problem');
                   throw new Exception('L\'article n\'a pas été supprimé');
                 }
                 break;
 
+            case 'getAllPosts':
+                getAllPosts();
+                break;
+
+            case 'getAllComments' :
+                getAllComments();
+                break;
             case 'adminLogsOut' :
                 adminLogsOut();
         }

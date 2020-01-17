@@ -20,13 +20,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav justify-content-end">
       <li class="nav-item">
-        <a class="nav-link" href="index.php?action=addPost"><i class="fas fa-plus-square"> Ajouter</i></a>
+        <a class="nav-link" href="index.php?action=addPost">Nouveau <i class="fas fa-plus-square"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fab fa-readme"> Billets</i></a>
+        <a class="nav-link" href="index.php?action=getAllPosts">Billets <i class="fab fa-readme"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="far fa-comments"> Commentaires</i></a>
+        <a class="nav-link" href="index.php?action=getAllComments">Commentaires <i class="far fa-comments"></i></a>
       </li>
     </ul>
   </div>

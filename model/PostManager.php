@@ -24,27 +24,25 @@ require_once('model/Manager.php');
 		public function createPost($title, $content) 
 		{
 			$dbh = $this->dbhConnect();
-			$request = $dbh->execute('INSERT INTO posts (title, content) VALUES (:title, :content)');
+			$request = $dbh->prepare('INSERT INTO posts (title, content, creation_date) VALUES (?, ?, NOW())');
 			$newPost = $request->execute(array($title, $content));
 
 			return $newPost;
 		}
 
-		public function editPost($title, $content, $id)
+		public function editPost()
 		{
 			$dbh = $this->dbhConnect();
-			$request = $dbh->prepare('UPDATE posts set title = :title, content = :content WHERE id = :id');
-			$editedPost = $request->execute(array($title, $content, $id));
+			$request = $dbh->prepare('UPDATE posts set title = ?, content = ? WHERE id = ?');
+			$editedPost = $request->execute(array($title, $content));
 
 			return $editedPost;
-		}	
+		}		
 
-		public function erasePost($postId, $commentId)
+		public function erasePost($id)
 		{
 			$dbh = $this->dbhConnect();
-			$request = $dbh->preprare('DELETE posts, comments FROM posts, comments WHERE posts.id = ? AND comments.post_id = ?');
-			$deletedPost = $request->execute(array($postId, $commentId));
-
-			return $deletedPost;
+			$request = $dbh->preprare('DELETE FROM posts WHERE id = :id');
+			$deletedPost = $request->execute(array(':id' => $id));
 		}
 	}

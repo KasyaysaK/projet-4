@@ -9,7 +9,7 @@
 			<h2></h2> <p></p>
 		</div>
 
-		<form class="row" action="index.php?action=" method="post">
+		<form class="row" action="index.php?action=updatePost" method="post">
 			<div class="col-sm-10">
 				<input id="title" class="form-control form my-2" aria-describedby="titre" name="title" value="<?= htmlspecialchars($postToEdit['title']) ?>" />
 				<textarea class="post-editor" aria-describedby="contenu" name="postToEdit"> 
@@ -18,7 +18,11 @@
 			</div>
 			<div>
 				<div>
-					<button type="button" class="btn btn-light" data-toggle="modal" data-target="#publish-post">Publier</button>
+					<div class="col my-2">
+						<button type="submit" class="btn btn-light">Modifier</button>
+						<a href="index.php?action=showDashboard" class="btn btn-light">Annuler</a>
+
+					</div>
 					
 				</div>
 			</div>

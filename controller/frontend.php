@@ -34,10 +34,9 @@ function post()
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager();
+    $newComment = $commentManager->postComment($postId, $author, $comment);
 
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
-
-    if ($affectedLines === false) {
+    if ($newComment === false) {
        throw new Exception('Impossible d\'ajouter le commentaire !');
     }
     else {
@@ -56,7 +55,6 @@ function flagComment($commentId, $postId)
         echo 'Le commentaire n\'a pas pu être signalé.';   
     }
     else {
-    var_dump('bonjour');  
         echo 'commentaire signalé';
         header('Location: index.php?action=post&id=' . $postId);
     }
