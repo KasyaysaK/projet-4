@@ -103,7 +103,7 @@ try {
             case 'publishPost' :
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
                     var_dump('post crée');
-                    publishPost($_POST['title'], $_POST['content']);
+                    publishPost(addslashes(strip_tags($_POST['title'])), addslashes(strip_tags($_POST['content'])));
                 } else {
                     var_dump('erreur');
                     throw new Exception('Veuillez écrire l\'article avant de l\'envoyer.');   
@@ -117,7 +117,7 @@ try {
             case 'updatePost' :
                 var_dump($_POST['content']);
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
-                    updatePost($_GET['postId'], $_POST['title'], $_POST['content']);
+                    updatePost($_GET['postId'], addslashes(strip_tags($_POST['title'])), addslashes(strip_tags($_POST['content'])));
                 }
                 else {
                     var_dump('erreur mise à jour');
