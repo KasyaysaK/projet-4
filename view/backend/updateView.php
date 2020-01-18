@@ -10,7 +10,7 @@
 	</div>
 
 	<form class="row" action="index.php?action=updatePost&amp;postId=<?= $postToEdit['id'] ?>" method="post">
-		<div class="col-sm-10">
+		<div class="col-sm-9">
 			<input id="title" class="form-control form my-2" aria-describedby="titre" name="title" value="<?= htmlspecialchars($postToEdit['title']) ?>" />
 			<textarea class="post-editor" aria-describedby="contenu" name="content"> 
 				<p><?= htmlspecialchars($postToEdit['content']) ?> </p> 

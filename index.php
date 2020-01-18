@@ -45,6 +45,7 @@ try {
             case 'flagComment' :
                 if (isset ($_GET['postId']) && isset ($_GET['commentId'])) {
                     flagComment($_GET['commentId'], $_GET['postId']);
+                    echo 'commentaire signalé!';
                 }
                 break;
 
@@ -102,10 +103,9 @@ try {
 
             case 'publishPost' :
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
-                    var_dump('post crée');
-                    publishPost(addslashes(strip_tags($_POST['title'])), addslashes(strip_tags($_POST['content'])));
+                    publishPost($_POST['title'], $_POST['content']);
                 } else {
-                    var_dump('erreur');
+                    require('view/backend/error.php');
                     throw new Exception('Veuillez écrire l\'article avant de l\'envoyer.');   
                 }
                 break;
@@ -115,12 +115,11 @@ try {
                 break;
 
             case 'updatePost' :
-                var_dump($_POST['content']);
                 if (!empty ($_POST['title']) && !empty($_POST['content'])) {
-                    updatePost($_GET['postId'], addslashes(strip_tags($_POST['title'])), addslashes(strip_tags($_POST['content'])));
+                    updatePost($_GET['postId'], $_POST['title'], $_POST['content']);
                 }
                 else {
-                    var_dump('erreur mise à jour');
+                    require('view/backend/error.php');
                     throw new Exception('Veuillez écrire l\'article avant de l\'envoyer.');   
                 }
                 break;
@@ -129,7 +128,6 @@ try {
                 if(isset($_GET['postId'])) {
                   deletePost($_GET['postId']); 
                 } else {
-                    var_dump('problem');
                   throw new Exception('L\'article n\'a pas été supprimé');
                 }
                 break;

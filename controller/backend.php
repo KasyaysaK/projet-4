@@ -109,7 +109,7 @@ function deletePost($id)
     $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $deletedPost = $postManager->erasePost($id);
 
-    listContent();
+    require('view/backend/deleteView.php');
 } 
 
 function getFlaggedComments()

@@ -7,7 +7,7 @@
 	</div>
 
 	<form class="row" action="index.php?action=publishPost" method="post">
-		<div class="col-sm-9">
+		<div class="col-sm-10">
 			<input id="title" class="form-control form my-2" aria-describedby="titre" name="title" placeholder="Titre de l'article" />
 			<textarea class="post-editor" aria-describedby="contenu" name="content" placeholder="Contenu de l'article"> 
 				<p>Écrivez le contenu de l'article ici</p> 

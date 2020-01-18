@@ -15,12 +15,12 @@
 
 				<div class="card content">
 					<div class="card-header d-flex justify-content-between">
-						 <h3 class="card-title"><?= htmlspecialchars($post['title']); ?></h3>
+						 <h3 class="card-title"><?= $post['title']; ?></h3>
 					</div>
 				   <div class="card-body">
 				   		<div class="card-text">
 				   			<p>
-					        	<?= htmlspecialchars(substr($post['content'], 0, 120)) ?>...
+					        	<?= substr($post['content'], 0, 120) ?>...
 					    	</p>
 
 				   		</div>
