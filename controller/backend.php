@@ -103,20 +103,16 @@ function updatePost($id, $title, $content)
     }
 }
 
-
 function deletePost($id) 
 {
     $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $deletedPost = $postManager->erasePost($id);
 
+//    $commentManager = new \JeanForteroche\Blog\Model\CommentManager();
+//    $deletedComment = $commentManager->eraseComment($postId);
+
     require('view/backend/deleteView.php');
 } 
-
-function getFlaggedComments()
-{
-    $commentManager = new \JeanForteroche\Blog\Model\CommentManager();
-	$getFlaggedComments = $commentManager->flaggedComments();
-}
 
 function validateComment($commentId) {
     $commentManager = new \JeanForteroche\Blog\Model\CommentManager();

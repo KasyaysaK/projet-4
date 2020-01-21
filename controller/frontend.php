@@ -21,12 +21,12 @@ function listPosts()
     require('view/frontend/listPostsView.php');
 }
 
-function post()
+function post($id)
 {
     $postManager = new \JeanForteroche\Blog\Model\PostManager();
     $commentManager = new \JeanForteroche\Blog\Model\CommentManager();
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
+    $post = $postManager->getPost($id);
+    $comments = $commentManager->getComments($id);
 
     require('view/frontend/postView.php');
 }

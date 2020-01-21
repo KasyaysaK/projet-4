@@ -21,7 +21,7 @@ try {
 
             case 'post' :
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    post();
+                    post($id);
                 }
                 else {
                     throw new Exception('L\'identifiant de billet n\'existe pas.');

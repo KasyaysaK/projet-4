@@ -5,7 +5,7 @@
 
    	<div class="container">
 		<div class="row">
-			<div class="col-md-8 offset-2">
+			<div class="col-10 offset-1">
 				<div class="d-flex justify-content-between my-4">
 					<a href="index.php" class="btn btn-dark">Revenir à la page d'accueil</a>
 					<a href="index.php?action=listPosts" class="btn btn-dark">Revenir à la liste des chapitres</a>	

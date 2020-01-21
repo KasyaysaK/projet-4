@@ -9,7 +9,7 @@
 		public function getAllComments()
 		{
 			$dbh = $this->dbhConnect();
-			$comments = $dbh->query('SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr, flagged FROM comments ORDER BY comment_date DESC');
+			$comments = $dbh->query('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%i\') AS comment_date_fr, flagged FROM comments ORDER BY comment_date DESC');
 
 			return $comments;
 		}
@@ -59,6 +59,15 @@
 
 			$rejectComment->execute(array($commentId));
 		}
+
+	//	public function eraseComment($postId)
+	//	{
+	//		$dbh = $this->dbhConnect();
+	//		$deletedComment = $dbh->prepare('DELETE FROM comments WHERE postId = ?' );
+//
+	//		$deletedComment->execute(array($postId));
+//
+	//	}
 
 	} 
 	
